@@ -45,11 +45,11 @@
 #include "filter.h"
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 73
+#define VERSION_MINOR 74
 
-#define VERSION "0.73"
+#define VERSION "0.74"
 
-#define TID_VERSION "0.73"
+#define TID_VERSION "0.74"
 
 extern struct jbList PktList;
 extern struct jbList DeleteList;
