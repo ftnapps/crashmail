@@ -1,8 +1,13 @@
 crashmail (0.71-6~1) UNRELEASED; urgency=low
 
-  * Start development for the next Debian package release.
+  * Changes to debian/control:
+    - Update the Debhelper Build-Depends version to '>= 8'.
+    - Use canonical domain name for Vcs-Browser and Vcs-Git URLs.
+    - Remove Homepage entry in binary package stanza as it is not neccessary.
+  * Add debian/README.source file, detailing using quilt for source patching.
+  * Update the Debhelper compatibility to '8' in debian/compat.
 
- -- Robert James Clay <jame@rocasa.us>  Thu, 31 Jan 2013 10:24:37 -0500
+ -- Robert James Clay <jame@rocasa.us>  Thu, 31 Jan 2013 11:23:04 -0500
 
 crashmail (0.71-5) unstable; urgency=low
 
