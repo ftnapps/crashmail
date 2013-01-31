@@ -12,7 +12,6 @@ Package: crashmail
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: zip, unzip, unar, goldedplus | jamnntpd
-Homepage: https://alioth.debian.org/projects/crashmail/
 Description: JAM and *.MSG capable Fidonet tosser
  CrashMail II is basically a more portable version of
  CrashMail, a tosser for Amiga computers. Users of the old
