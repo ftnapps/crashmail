@@ -1,3 +1,9 @@
+crashmail (0.71-6~1) UNRELEASED; urgency=low
+
+  * Start development for the next Debian package release.
+
+ -- Robert James Clay <jame@rocasa.us>  Thu, 31 Jan 2013 10:24:37 -0500
+
 crashmail (0.71-5) unstable; urgency=low
 
   * New Maintainer. (Closes: #693229)
