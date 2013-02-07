@@ -30,6 +30,7 @@ cleanwin32 :
 cleanos2 : 
 	make -C src -f Makefile cleanos2
 
+.PHONY: tests
 tests:
 	make -C tests
 
