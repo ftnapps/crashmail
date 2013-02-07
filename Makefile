@@ -8,6 +8,7 @@ help:
 	@echo make cleanlinux ....... Remove object files under Linux
 	@echo make cleanwin32 ....... Remove object files under Win32
 	@echo make cleanos2 ......... Remove object files under OS/2
+	@echo make tests ............ Run Tests (requires /bin/sh)
 
 linux :
 	mkdir -p bin
@@ -29,4 +30,6 @@ cleanwin32 :
 cleanos2 : 
 	make -C src -f Makefile cleanos2
 
+tests:
+	make -C tests
 
