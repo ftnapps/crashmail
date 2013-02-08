@@ -1,3 +1,8 @@
+Changes in version 0.73
+
+ - Fix for a 'fails to build on GNU/kFreeBSD' bug on Debian (Bug#592481). Thanks
+   to Petr Salinger <Petr.Salinger@seznam.cz>.
+
 Changes in version 0.72
 
  - Fix usage of stdarg macros. This fixes a segmentation fault when writing to
