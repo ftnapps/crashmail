@@ -1,3 +1,8 @@
+Changes in version 0.74
+
+ - Add usage of CPPFLAGS, CFLAGS, & LDFLAGS to the source files Makefile.linux,
+   cmnllib/Makefile.linux, jamlib/Makefile.linux, and oslib_linux/Makefile.
+
 Changes in version 0.73
 
  - Fix for a 'fails to build on GNU/kFreeBSD' bug on Debian (Bug#592481). Thanks
