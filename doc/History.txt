@@ -1,3 +1,19 @@
+Changes in version 0.72
+
+ - Fix usage of stdarg macros. This fixes a segmentation fault when writing to
+   the log file.
+
+ - Fix duplicate argument to LogWrite.
+
+ - Make the "obj" directory if it does not already exist.
+
+ - Use stdint types to get sizes with known number of bits. This fixes data
+   handling issues on 64-bit architectures.
+
+ - Fix printf format strings for node numbers. This fixes log and error messages
+   displaying 4D node numbers in 64-bit builds.
+
+
 Version 0.7 was probably the last major revision of CrashMail. If you 
 are using CrashMail, please send me an e-mail (billing@df.lth.se).
 I am curious about how many CrashMail users there still are...
