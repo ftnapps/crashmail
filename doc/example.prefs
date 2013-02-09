@@ -32,7 +32,7 @@ SYSOP "Johan Billing"
 ; In the Linux version of CrashMail, it is possible to enter "syslog" as the
 ; filename. If you do this, everything will be logged to the syslog instead.
 
-LOGFILE "/var/log/crashmail.log"
+LOGFILE "c:\\fido\\logs\\crashmail.log"
 LOGLEVEL 5
 
 ; DUPEFILE <filename> <maxnumber>
@@ -49,7 +49,7 @@ LOGLEVEL 5
 ;  KILL       Dupes are killed
 ;  IGNORE     No dupechecking
 
-DUPEFILE "/var/log/crashmail.dupes" 200
+DUPEFILE "c:\\fido\\logs\\crashmail.dupes" 200
 DUPEMODE BAD
 
 ; LOOPMODE IGNORE/LOG/LOG+BAD
@@ -97,41 +97,41 @@ DEFAULTZONE 2
 ; The inbound directory is the directory where CrashMail looks for .pkt files
 ; and bundles to toss.
 
-INBOUND "/var/spool/ftn/inb"
+INBOUND "c:\\fido\\inbound"
 
 ; OUTBOUND <directory>
 ;
 ; The outbound directory is where CrashMail writes the flow files that tells
 ; the mailer what files to send.
 
-OUTBOUND "/var/spool/ftn/outb"
+OUTBOUND "c:\\fido\\outbound"
 
 ; TEMPDIR <directory>
 ;
 ; This is the directory where CrashMail unpacks incoming bundles.
 ;
 
-TEMPDIR "/tmp"
+TEMPDIR "c:\\fido\\temp"
 
 ; CREATEPKTDIR <directory>
 ;
 ; This is the directory where CrashMail stores created .pkt files until they
 ; are stored in the packet directory.
 
-CREATEPKTDIR "/tmp"
+CREATEPKTDIR "c:\\fido\\temp"
 
 ; PACKETDIR <directory>
 ;
 ; This is the directory where CrashMail stores generated bundles.
 
-PACKETDIR "/var/spool/ftn/outb"
+PACKETDIR "c:\\fido\\packets"
 
 ; STATSFILE <filename>
 ;
 ; This is the file where CrashMail stores statistics about areas and nodes.
 ; You can display the contents of this file with CrashStats.
 
-STATSFILE "/var/spool/ftn/data/crashmail.stats"
+STATSFILE "c:\\fido\\crashmail.stats"
 
 ; BEFORETOSS <command>
 ;
@@ -388,8 +388,8 @@ FILEATTACH "2:200/207.5"
 ; the bundle matches the recog string, CrashMail uses that packer. ? can be
 ; used as a wildcard and you can use $xx to specify a hexadecimal number.
 
-PACKER "LHA" "/usr/bin/lha a %a %f" "/usr/bin/lha %a" "??-lh?-"
-PACKER "ZIP" "/usr/bin/zip -j %a %f" "/usr/bin/unzip -j %a" "PK"
+PACKER "LHA" "c:\\fido\\bin\\lha a %a %f" "c:\\fido\\bin\\lha x %a" "??-lh?-"
+PACKER "ZIP" "c:\\fido\\bin\\pkzip %a %f" "c:\\fido\\bin\\pkunzip %a" "PK"
 
 ; AKA
 ; ===
@@ -514,7 +514,7 @@ REMOTESYSOP "Johannes Nilsson"
 ;
 ; The file that is sent when a downlink issues a %HELP command.
 
-AREAFIXHELP "/usr/share/crashmail/AreafixHelp.txt"
+AREAFIXHELP "c:\\fido\\AreafixHelp.txt"
 
 ; AREAFIXMAXLINES <max>
 ;
@@ -541,7 +541,7 @@ AREAFIXNAME "CrashMail"
 ; available for forward-requests. GROUP specifies the group needed to be
 ; allowed to forward-requests areas in this list.
 
-AREALIST 2:200/100.0 "/var/spool/ftn/R20Desc.lst" GROUP A FORWARD DESC
+AREALIST 2:200/100.0 "c:\\fido\\lists\\R20Desc.lst" GROUP A FORWARD DESC
 
 ; Routing
 ; =======
@@ -696,18 +696,18 @@ JAM_MAXOPEN 5
 ;
 ; You must use one of these %-codes or the new path will not be unique.
 
-NETMAIL "NETMAIL" 2:200/108.7 JAM "/var/spool/ftn/msg/NETMAIL"
+NETMAIL "NETMAIL" 2:200/108.7 JAM "c:\\fido\\areas\\NETMAIL"
 
-AREA "BAD" 2:200/108.7 JAM "/var/spool/ftn/msg/BAD"
+AREA "BAD" 2:200/108.7 JAM "c:\\fido\\areas\\BAD"
 
-AREA "DEFAULT_A" 2:200/108.7 JAM "/var/spool/ftn/msg/%a"
+AREA "DEFAULT_A" 2:200/108.7 JAM "c:\\fido\\areas\\%8"
 
-AREA "R20_INTRESSE" 2:200/108.7 JAM "/var/spool/ftn/msg/R20_INTRESSE"
+AREA "R20_INTRESSE" 2:200/108.7 JAM "c:\\fido\\areas\\36124179"
 EXPORT %2:200/100.0
 DESCRIPTION "Intresseklubben"
 GROUP A
 
-AREA "R20_TRASHCAN" 2:200/108.7 JAM "/var/spool/ftn/msg/R20_TRASHCAN"
+AREA "R20_TRASHCAN" 2:200/108.7 JAM "c:\\fido\\areas\\3612417a"
 EXPORT %2:200/100.0
 DESCRIPTION "Soptunnan"
 GROUP A
