@@ -1,0 +1,23 @@
+Description: Add support for installing unstripped binaries.
+ Patch src/Makefile.linux to add support for installing unstripped binaries.
+ Closed bug# 436670. Not forwarded upstream because the change is vendor
+ specific.
+Bug-Debian: http://bugs.debian.org/436670
+Author: Peter Karlsson <peterk@debian.org>
+Last-Update: 2013-02-08
+
+--- crashmail-0.74.orig/src/Makefile.linux
++++ crashmail-0.74/src/Makefile.linux
+@@ -38,7 +38,12 @@ DEFS = $(PLATFORMDEF) $(MBDEFS) $(NLDEFS
+ 
+ CC = gcc $(CPPFLAGS) $(CFLAGS) $(DEFS) $(LDFLAGS) -I $(INCDIR) -Wall
+ RM = rm -f
++# Edited for Debian - make it possible to install unstripped binaries
++ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+ STRIP = strip
++else
++STRIP = true
++endif
+ 
+ # Objects
+ 
