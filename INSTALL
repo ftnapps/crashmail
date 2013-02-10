@@ -1,6 +1,7 @@
 How to compile:
 
-Just type
+For win32 and os2 targets: first create a bin/ and src/obj/ directories.
+Then just type
 
  make linux 
 or
