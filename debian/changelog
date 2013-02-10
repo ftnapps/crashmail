@@ -1,4 +1,4 @@
-crashmail (0.74-1~1) UNRELEASED; urgency=low
+crashmail (0.75-1~1) UNRELEASED; urgency=low
 
   * New upstream release.
   * Change the 'dh_clean -k' line to dh_prep in debian/rules.
@@ -12,7 +12,7 @@ crashmail (0.74-1~1) UNRELEASED; urgency=low
   * Add debian/README.source file, detailing using quilt for source patching.
   * Update the Debhelper compatibility to '8' in debian/compat.
 
- -- Robert James Clay <jame@rocasa.us>  Fri,  8 Feb 2013 20:31:15 -0500
+ -- Robert James Clay <jame@rocasa.us>  Sat,  9 Feb 2013 20:09:31 -0500
 
 crashmail (0.71-5) unstable; urgency=low
 
