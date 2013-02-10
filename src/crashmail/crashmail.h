@@ -44,13 +44,7 @@
 #include "areafix.h"
 #include "filter.h"
 
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 76
-#define VERSION_PATCH 0
-
-#define VERSION "0.76"
-
-#define TID_VERSION "0.76"
+#include "version.h"
 
 extern struct jbList PktList;
 extern struct jbList DeleteList;
