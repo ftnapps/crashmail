@@ -1,3 +1,11 @@
+2013-02-10  Robert James Clay  <jame@rocasa.us>
+
+ - Release version 0.75.1
+
+ - src/crashmail/crashmail.h: Correct VERSION entries for v0.75 and add a
+   definition for VERSION_PATCH.
+
+
 2013-02-09  Robert James Clay  <jame@rocasa.us>
 
  - Release version 0.75
