@@ -1,0 +1,71 @@
+
+                                 CrashMail II
+
+                             The Next Generation!
+
+                      ...a stranger in a strange land...
+
+
+============
+Introduction
+============
+Welcome to CrashMail II! CrashMail II is basically a more portable version
+of CrashMail, a tosser for Amiga computers. Users of the old Amiga
+version will probably find some things familiar while some features are
+gone such as the ARexx port (for obvious reasons!) and the GUI
+configuration editor. The only feature that CrashMail II has and the old
+CrashMail hasn't is support for JAM messagebases.
+
+Homepage:   http://ftnapps.sourceforge.net/crashmail.html
+Code:       http://sourceforge.net/p/ftnapps/crashmail/code/
+Downloads:  http://sourceforge.net/projects/ftnapps/files/crashmail/
+
+
+=========
+Copyright
+=========
+
+Copyright (C) 1998-2004, Johan Billing <billing@df.lth.se>
+Copyright (C) 1999-2010, Peter Krefting <peter@softwolves.pp.se>
+Copyright (C) 2009-2013, Robert James Clay <jame@rocasa.us>
+
+JAMLIB is copyright (c) 1999 Björn Stenberg. JAMLIB is released under the
+GNU Lesser General Public License, See src/jamlib/jamlib.doc for more
+information.
+
+Except where explicitly stated otherwise, all other parts of CrashMail are
+copyright 1998-2004 Johan Billing. Permission to use, copy and distribute
+CrashMail is granted provided that this copyright notice is included. Permission
+to modify CrashMail is granted. Distributing modified versions of CrashMail is
+allowed provided that the documentation clearly states that it is a modified
+version. Parts of CrashMail may be freely used in other projects as long as
+the documentation mentions the original copyright holder.
+
+
+================
+Acknowledgements
+================
+Many thanks to Björn Stenberg for creating the excellent subroutine library
+JAMLIB which CrashMail uses for handling JAM messagebases.
+
+Thanks for Peter Karlsson for porting CrashMail II to OS/2 and the man pages.
+
+
+=============
+Documentation
+=============
+The documentation is very brief and CrashMail probably isn't the ideal
+choice for Fidonet beginners. All documentation of the available keywords
+in the configuration file can be found in the doc/example.prefs file, and
+other information can be found in the doc/ReadMe.txt file..
+
+
+=========
+Platforms
+=========
+This version of CrashMail can be compiled for Win32, Linux and OS/2; see the
+INSTALL file for details. If you are interested in running CrashMail on another
+platform, please contact me if you are willing to do the work necessary to adapt
+CrashMail to your platform. The amount of work required mostly depends on whether
+your C-compiler supports some common POSIX-functions which CrashMail uses.
+
