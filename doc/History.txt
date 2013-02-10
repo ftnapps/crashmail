@@ -1,5 +1,19 @@
 2013-02-10  Robert James Clay  <jame@rocasa.us>
 
+ - Release version 0.76
+
+ - Add a top level Makefile to the distribution.
+
+ - Update and rename src/ReadMe.txt as the top level INSTALL file.
+
+ - Derive new top level README file from the content of doc/ReadMe.txt.
+
+ - Move the definition of the Crashmail version from src/crashmail/crashmail.h
+   to the new file src/crashmail/version.h.
+
+
+2013-02-10  Robert James Clay  <jame@rocasa.us>
+
  - Release version 0.75.1
 
  - src/crashmail/crashmail.h: Correct VERSION entries for v0.75 and add a

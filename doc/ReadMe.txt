@@ -95,7 +95,7 @@ Some notes on different platforms:
   of using its own log file. Just use "syslog" as the name of your log file.
 
   If the precompiled binaries in the CrashMail archive don't work on your
-  system, you will have to compile your own. See src/ReadMe.txt for more
+  system, you will have to compile your own. See INSTALL for more
   information about this.
 
 Arguments
