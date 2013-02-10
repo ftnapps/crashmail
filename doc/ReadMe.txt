@@ -25,14 +25,20 @@ For suggestions, bug reports and questions, don't hesitate to contact me at:
 =========
 Copyright
 =========
-JAMLIB is copyright (c) 1999 Björn Stenberg. JAMLIB is released under the
+
+
+Copyright (C) 1998-2004, Johan Billing <billing@df.lth.se>
+Copyright (C) 1999-2010, Peter Krefting <peter@softwolves.pp.se>
+Copyright (C) 2009-2013, Robert James Clay <jame@rocasa.us>
+
+JAMLIB is copyright (c) 1999 BjÃ¶rn Stenberg. JAMLIB is released under the
 GNU Lesser General Public License, See src/jamlib/jamlib.doc for more
 information.
 
 Except where explicitly stated otherwise, all other parts of CrashMail are
-copyright 1999 Johan Billing. Permission to use, copy and distribute CrashMail
-is granted provided that this copyright notice is included. Permission to
-modify CrashMail is granted. Distributing modified versions of CrashMail is
+copyright 1998-2004 Johan Billing. Permission to use, copy and distribute
+CrashMail is granted provided that this copyright notice is included. Permission
+to modify CrashMail is granted. Distributing modified versions of CrashMail is
 allowed provided that the documentation clearly states that it is a modified
 version. Parts of CrashMail may be freely used in other projects as long as
 the documentation mentions the original copyright holder.
@@ -40,7 +46,7 @@ the documentation mentions the original copyright holder.
 ================
 Acknowledgements
 ================
-Many thanks to Björn Stenberg for creating the excellent subroutine library
+Many thanks to BjÃ¶rn Stenberg for creating the excellent subroutine library
 JAMLIB which CrashMail uses for handling JAM messagebases.
 
 Thanks for Peter Karlsson for porting CrashMail II to OS/2 and the man pages.
