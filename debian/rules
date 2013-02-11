@@ -50,7 +50,7 @@ binary-arch: build install
 	dh_installdocs
 	dh_installexamples doc/example.prefs
 	dh_installman man/*
-	dh_installchangelogs doc/History.txt
+	dh_installchangelogs
 	dh_install
 	dh_link
 	dh_strip
