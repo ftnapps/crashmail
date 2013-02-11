@@ -13,7 +13,7 @@
 #include <shared/parseargs.h>
 #include <shared/node4d.h>
 
-#define VERSION "1.0"
+#include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashExport " VERSION " " __AMIGADATE__;

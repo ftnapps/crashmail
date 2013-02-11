@@ -10,7 +10,7 @@
 
 #include <cmnllib/cmnllib.h>
 
-#define VERSION "1.0"
+#include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashCompileNL " VERSION " " __AMIGADATE__;

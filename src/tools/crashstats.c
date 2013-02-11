@@ -16,14 +16,16 @@
 #include <oslib/osfile.h>
 #include <oslib/osmisc.h>
 
-#define VERSION "1.0"
-#define COPYRIGHT "1998"
+#include <crashmail/version.h>
+#define COPYRIGHT "1998,2013"
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashStats "VERSION" ("__COMMODORE_DATE__")";
 #endif
 
 #define STATS_IDENTIFIER   "CST3"
+
+static size_t ptrsize = sizeof(void *);
 
 struct DiskAreaStats
 {
@@ -196,22 +198,22 @@ bool Sort(struct jbList *list,uchar sortmode)
 
    switch(sortmode)
    {
-      case 'a': qsort(buf,nc,4,CompareAlpha);
+      case 'a': qsort(buf,nc,ptrsize,CompareAlpha);
                 break;
 
-      case 't': qsort(buf,nc,4,CompareTotal);
+      case 't': qsort(buf,nc,ptrsize,CompareTotal);
                 break;
 
-      case 'm': qsort(buf,nc,4,CompareMsgsDay);
+      case 'm': qsort(buf,nc,ptrsize,CompareMsgsDay);
                 break;
 
-      case 'd': qsort(buf,nc,4,CompareFirstTime);
+      case 'd': qsort(buf,nc,ptrsize,CompareFirstTime);
                 break;
 
-      case 'l': qsort(buf,nc,4,CompareLastTime);
+      case 'l': qsort(buf,nc,ptrsize,CompareLastTime);
                 break;
 
-      case 'u': qsort(buf,nc,4,CompareDupes);
+      case 'u': qsort(buf,nc,ptrsize,CompareDupes);
                 break;
    }
 
@@ -256,7 +258,7 @@ bool SortNodes(struct jbList *list)
    for(sn=(struct NodeStatsNode *)list->First;sn;sn=sn->Next)
       *work++=sn;
 
-   qsort(buf,nc,4,CompareNodes);
+   qsort(buf,nc,ptrsize,CompareNodes);
 
    jbNewList(list);
 
@@ -388,7 +390,7 @@ int main(int argc, char **argv)
       exit(OS_EXIT_ERROR);
    }
 
-   printf("CrashStats "VERSION" © "  COPYRIGHT " Johan Billing\n");
+   printf("CrashStats "VERSION" © "  COPYRIGHT " Johan Billing & Robert James Clay\n");
 
    if(!(fh=osOpen(args[ARG_FILE].data,MODE_OLDFILE)))
    {
