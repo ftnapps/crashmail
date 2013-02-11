@@ -17,7 +17,7 @@
 #include <oslib/osdir.h>
 #include <oslib/osmisc.h>
 
-#define VERSION "1.0"
+#include <crashmail/version.h>
 
 #define NET(x)  (x >> 16)
 #define NODE(x) (x & 0xFFFF)
