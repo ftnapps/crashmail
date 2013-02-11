@@ -1,11 +1,24 @@
-2013-02-10  Lars Kellogg-Stedman  lars@seas.harvard.edu
+2013-02-11  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.0
+
+ - Move, rename, and update doc/History.txt to be the top level ChangeLog file.
+
+ - The tools crashexport, crashgetnode, crashlist, crashlistout, and crashstats
+   have already had their versions set as v1.0; with the release of Crashmail
+   v1.0, synchronize their versions with crashmail itself by setting their
+   versions from src/crashmail/version.h instead of setting it directly in
+   their code.
+
+
+2013-02-10 20:14  Lars Kellogg-Stedman  lars@seas.harvard.edu
 
  - src/tools/crashstats.c: Fixed 64-bit problems in crashstats, which made
    assumptions about the size of pointers that would cause it to fail on 64bit
    systems.
 
 
-2013-02-10  Robert James Clay  <jame@rocasa.us>
+2013-02-10 17:30  Robert James Clay  <jame@rocasa.us>
 
  - Release version 0.76
 
@@ -19,7 +32,7 @@
    to the new file src/crashmail/version.h.
 
 
-2013-02-10  Robert James Clay  <jame@rocasa.us>
+2013-02-10 12:55  Robert James Clay  <jame@rocasa.us>
 
  - Release version 0.75.1
 
