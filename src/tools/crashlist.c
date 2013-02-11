@@ -17,7 +17,7 @@
 #include <oslib/osdir.h>
 #include <oslib/osmisc.h>
 
-#define VERSION "1.0"
+#include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashList " VERSION " " __AMIGADATE__;
