@@ -1,3 +1,10 @@
+2013-02-10  Lars Kellogg-Stedman  lars@seas.harvard.edu
+
+ - src/tools/crashstats.c: Fixed 64-bit problems in crashstats, which made
+   assumptions about the size of pointers that would cause it to fail on 64bit
+   systems.
+
+
 2013-02-10  Robert James Clay  <jame@rocasa.us>
 
  - Release version 0.76
