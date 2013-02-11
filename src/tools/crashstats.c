@@ -16,8 +16,8 @@
 #include <oslib/osfile.h>
 #include <oslib/osmisc.h>
 
-#define VERSION "1.0"
-#define COPYRIGHT "1998"
+#include <crashmail/version.h>
+#define COPYRIGHT "1998,2013"
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashStats "VERSION" ("__COMMODORE_DATE__")";
@@ -390,7 +390,7 @@ int main(int argc, char **argv)
       exit(OS_EXIT_ERROR);
    }
 
-   printf("CrashStats "VERSION" © "  COPYRIGHT " Johan Billing\n");
+   printf("CrashStats "VERSION" © "  COPYRIGHT " Johan Billing & Robert James Clay\n");
 
    if(!(fh=osOpen(args[ARG_FILE].data,MODE_OLDFILE)))
    {
