@@ -17,10 +17,7 @@
 
 #include <shared/fidonet.h>
 
-#define VERSION "1.1"
-
-#define VERSION_MAJOR 1
-#define VERSION_MINOR 1
+#include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashWrite "VERSION" ("__COMMODORE_DATE__")";
