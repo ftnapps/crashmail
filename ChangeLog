@@ -1,3 +1,9 @@
+2013-02-12 14:06  Lars Kellogg-Stedman  lars@seas.harvard.edu
+
+ - src/crashmail/areafix.c: more pointer size fixes
+ - src/tools/crashmaint.c: more pointer size fixes
+
+
 2013-02-12 13:40  Robert James Clay  <jame@rocasa.us>
 
  - Release as version 1.2
