@@ -1,3 +1,13 @@
+2013-02-12 11:18  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.1
+
+ - crashexport.c: crashexport has already had its version set as v1.1; with the
+   release of Crashmail with an overall version of v1.1, synchronize its version
+   with crashmail itself by setting it from src/crashmail/version.h instead of
+   setting it directly in its code.
+
+
 2013-02-11  Robert James Clay  <jame@rocasa.us>
 
  - Release as version 1.0
