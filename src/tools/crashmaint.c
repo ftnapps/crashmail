@@ -25,7 +25,7 @@
 #include <shared/storedmsg.h>
 #include <shared/fidonet.h>
 
-#define VERSION "1.2"
+#include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
 uchar *ver="$VER: CrashMaint "VERSION" ("__COMMODORE_DATE__")";
