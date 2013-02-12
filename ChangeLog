@@ -1,3 +1,8 @@
+2013-02-12 12:03  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.1.1
+
+
 2013-02-12 12:27  Lars Kellogg-Stedman  lars@seas.harvard.edu
 
  - src/tools/crashwrite.c: Fix integer-length issues in crashwrite. Crashwrite
