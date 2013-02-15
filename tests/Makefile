@@ -1,4 +1,4 @@
-include ../Makefile.inc
+# tests/Makefile
 
 ROUNDUP=./roundup
 
