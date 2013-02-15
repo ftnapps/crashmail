@@ -3,8 +3,8 @@
 setup_sandbox () {
 	__topdir__=$PWD
 	__testdir__=$(mktemp -d testXXXXXX)
-	__tools__=$PWD/../tools
-	__crashmail__=$PWD/../crashmail/crashmail
+	__tools__=$PWD/../bin
+	__crashmail__=$PWD/../bin/crashmail
 
 	cd $__testdir__
 }
@@ -24,7 +24,7 @@ setup_crashmail_env () {
 	cp $__topdir__/crashmail.prefs crashmail.prefs
 	cp $__topdir__/{nodelist.txt,pointlist.txt,cmnodelist.prefs} nodelist/
 
-	$__topdir__/../tools/crashlist nodelist
+	$__topdir__/../bin/crashlist nodelist
 }
 
 setup_tmpfile () {
