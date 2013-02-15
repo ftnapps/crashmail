@@ -31,6 +31,6 @@ cleanos2 :
 	make -C src -f Makefile cleanos2
 
 .PHONY: tests
-tests:
+tests: linux
 	make -C tests
 
