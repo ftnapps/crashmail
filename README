@@ -34,6 +34,8 @@ JAMLIB is copyright (c) 1999 Björn Stenberg. JAMLIB is released under the
 GNU Lesser General Public License, See src/jamlib/jamlib.doc for more
 information.
 
+tests/roundup is copyright (c) 2010 Blake Mizerany - MIT License
+
 Except where explicitly stated otherwise, all other parts of CrashMail are
 copyright 1998-2004 Johan Billing. Permission to use, copy and distribute
 CrashMail is granted provided that this copyright notice is included. Permission

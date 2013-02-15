@@ -1,0 +1,59 @@
+SYSOP "Test Sysop"
+LOGFILE "crashmail.log"
+LOGLEVEL 6
+DUPEFILE "dupes" 200
+DUPEMODE BAD
+LOOPMODE LOG+BAD
+DEFAULTZONE 1
+NODELIST nodelist CMNL
+INBOUND "spool/inbound"
+OUTBOUND "spool/outbound"
+TEMPDIR "spool/temp"
+CREATEPKTDIR "spool/temp"
+PACKETDIR "spool/packets"
+
+STATSFILE "crashmail.stats"
+
+GROUPNAME A "TestGroup"
+
+PACKER "ZIP" "zip -j %a %f" "unzip -j -o %a" "PK"
+AREAFIXNAME "areafix"
+AREAFIXHELP "../doc/AreafixHelp.txt"
+
+AKA 99:99/1
+DOMAIN "testdomain"
+
+NODE 99:99/99 "ZIP" ""
+DEFAULTGROUP A
+AREAFIXINFO "TESTPASS" "A" "" ""
+
+NODE 99:99/88 "ZIP" ""
+DEFAULTGROUP A
+AREAFIXINFO "TESTPASS" "A" "" ""
+
+NODE 99:99/999 "ZIP" ""
+DEFAULTGROUP A
+AREAFIXINFO "TESTPASS" "A" "" ""
+
+NODE 88:99/1 "ZIP" ""
+DEFAULTGROUP A
+AREAFIXINFO "TESTPASS" "A" "" ""
+
+NODE 88:99/99 "ZIP" ""
+DEFAULTGROUP A
+AREAFIXINFO "TESTPASS" "A" "" ""
+
+ROUTE "88:*/*" HUB 99:99/1
+ROUTE "*:*/*" NODE 99:99/1
+BOUNCE "1:*/*.*" "2:*/*.*" "3:*/*.*" "4:*/*.*" "5:*/*.*" "6:*/*.*"
+
+MSG_HIGHWATER
+JAM_HIGHWATER
+JAM_LINK
+JAM_QUICKLINK
+
+NETMAIL "NETMAIL" 99:99/1 MSG "areas/netmail"
+AREA "BAD" 99:99/1 MSG "areas/bad"
+AREA "TESTAREA" 99:99/1.0 MSG "areas/testarea"
+EXPORT 99:99/99.0 99:99/999.0 88:99/99
+GROUP A
