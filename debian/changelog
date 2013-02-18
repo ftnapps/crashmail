@@ -1,4 +1,4 @@
-crashmail (1.3-1~1) UNRELEASED; urgency=low
+crashmail (1.4-1~1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Multiple fixes for compile time build issues.
@@ -18,7 +18,7 @@ crashmail (1.3-1~1) UNRELEASED; urgency=low
   * Add debian/README.source file, detailing using quilt for source patching.
   * Update the Debhelper compatibility to '8' in debian/compat.
 
- -- Robert James Clay <jame@rocasa.us>  Fri, 15 Feb 2013 12:13:36 -0500
+ -- Robert James Clay <jame@rocasa.us>  Sun, 17 Feb 2013 19:27:13 -0500
 
 crashmail (0.71-5) unstable; urgency=low
 
