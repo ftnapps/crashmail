@@ -1,4 +1,10 @@
-crashmail (1.4-1~1) UNRELEASED; urgency=low
+crashmail (1.4-0precise1~1) UNRELEASED; urgency=low
+
+  * Test builds of Crashmail v1.4 for Ubuntu v12.04 (precise).
+
+ -- Robert James Clay <jame@rocasa.us>  Wed, 09 Oct 2013 08:13:51 -0400
+
+crashmail (1.4-0wheezy1~1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Multiple fixes for compile time build issues.
