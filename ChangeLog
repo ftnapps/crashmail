@@ -1,3 +1,11 @@
+2013-02-17 19:21  Robert James Clay  <jame@rocasa.us>
+
+ - Add a text file with message testing content.
+
+ - Correct name of crashwrite option for msg text in tests/02-crashwrite-test.sh.
+
+
+
 2014-03-06 08:15  Lars Kellogg-Stedman  <lars@seas.harvard.edu>
 
  - Convert from ulong/ushort to stdint types in src/cmnllib/, src/jamlib/, src/crashmail/,
