@@ -26,15 +26,5 @@ it_generates_a_packet () {
 	test -f $pkt
 }
 
-it_generates_named_packet () {
-	$__tools__/crashwrite DIR spool/temp \
-		FILENAME test.pkt \
-		FROMNAME "Test Sysop" \
-		FROMADDR "99:99/1" \
-		TONAME "Test User" \
-		TOADDR "99:99/99" \
-		SUBJECT "Test Message" | tee $tmpfile
-	
-	test -f spool/temp/test.pkt
-}
+
 

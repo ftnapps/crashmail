@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -7,7 +8,7 @@
 
 #include <oslib/osfile.h>
 
-osFile osOpen(uchar *name,ulong mode)
+osFile osOpen(char *name,uint32_t mode)
 {
    FILE *fh;
 
@@ -45,12 +46,12 @@ int osGetChar(osFile os)
    return(c);
 }
 
-ulong osRead(osFile os,void *buf,ulong bytes)
+uint32_t osRead(osFile os,void *buf,uint32_t bytes)
 {
    return fread(buf,1,bytes,(FILE *)os);
 }
 
-bool osPutChar(osFile os, uchar ch)
+bool osPutChar(osFile os, char ch)
 {
    if(fputc(ch,(FILE *)os)==EOF)
 		return(FALSE);
@@ -58,7 +59,7 @@ bool osPutChar(osFile os, uchar ch)
 	return(TRUE);
 }
 
-bool osWrite(osFile os,const void *buf,ulong bytes)
+bool osWrite(osFile os,const void *buf,uint32_t bytes)
 {
    if(fwrite(buf,1,bytes,(FILE *)os)!=bytes)
 		return(FALSE);
@@ -66,7 +67,7 @@ bool osWrite(osFile os,const void *buf,ulong bytes)
 	return(TRUE);
 }
 
-bool osPuts(osFile os,uchar *str)
+bool osPuts(osFile os,char *str)
 {
    if(fputs(str,(FILE *)os)==EOF)
 		return(FALSE);
@@ -74,7 +75,7 @@ bool osPuts(osFile os,uchar *str)
 	return(TRUE);
 }
 
-ulong osFGets(osFile os,uchar *str,ulong max)
+uint32_t osFGets(osFile os,char *str,uint32_t max)
 {
    char *s;
 
@@ -90,18 +91,18 @@ ulong osFGets(osFile os,uchar *str,ulong max)
          s[strlen(s)-1]=0;
       }
 
-      return (ulong)strlen(s);
+      return (uint32_t)strlen(s);
    }
 
    return(0);
 }
 
-ulong osFTell(osFile os)
+off_t osFTell(osFile os)
 {
-   return ftell((FILE *)os);
+   return ftello((FILE *)os);
 }
 
-bool osFPrintf(osFile os,uchar *fmt,...)
+bool osFPrintf(osFile os,char *fmt,...)
 {
    va_list args;
 	int res;
@@ -116,7 +117,7 @@ bool osFPrintf(osFile os,uchar *fmt,...)
 	return(TRUE);
 }
 
-bool osVFPrintf(osFile os,uchar *fmt,va_list args)
+bool osVFPrintf(osFile os,char *fmt,va_list args)
 {
 	int res;
 	
@@ -128,7 +129,7 @@ bool osVFPrintf(osFile os,uchar *fmt,va_list args)
 	return(TRUE);
 }
 
-void osSeek(osFile fh,ulong offset,short mode)
+void osSeek(osFile fh,off_t offset,short mode)
 {
    int md;
 
@@ -138,5 +139,5 @@ void osSeek(osFile fh,ulong offset,short mode)
    if(mode == OFFSET_END)
       md=SEEK_END;
 
-   fseek((FILE *)fh,offset,md);
+   fseeko((FILE *)fh,offset,md);
 }
