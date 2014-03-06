@@ -1,10 +1,15 @@
+2014-03-06 16:45  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.5
+
+
 2014-03-06 14:14  Lars Kellogg-Stedman  <lars@seas.harvard.edu>
 
- - Fix type mismatches and warnings through the code
+ - Merge fix of type mismatches and warnings through the code.
 
- - Use off_t for seek and tell operations
+ - Merge using off_t for seek and tell operations.
 
- - Add missing commands to man page
+ - Merge adding missing commands to man page.
 
 
 2014-03-06 13:49  Robert James Clay  <jame@rocasa.us>
@@ -14,11 +19,10 @@
  - Correct name of crashwrite option for msg text in tests/02-crashwrite-test.sh.
 
 
-
 2014-03-06 08:15  Lars Kellogg-Stedman  <lars@seas.harvard.edu>
 
- - Convert from ulong/ushort to stdint types in src/cmnllib/, src/jamlib/, src/crashmail/,
-   src/shared/, and src/tools/.
+ - Merge conversion from ulong/ushort to stdint types in src/cmnllib/, src/jamlib/,
+   src/crashmail/, src/shared/, and src/tools/.
 
 
 2013-02-17 19:21  Robert James Clay  <jame@rocasa.us>
