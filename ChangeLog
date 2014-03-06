@@ -1,4 +1,13 @@
-2013-02-17 19:21  Robert James Clay  <jame@rocasa.us>
+2014-03-06 14:14  Lars Kellogg-Stedman  <lars@seas.harvard.edu>
+
+ - Fix type mismatches and warnings through the code
+
+ - Use off_t for seek and tell operations
+
+ - Add missing commands to man page
+
+
+2014-03-06 13:49  Robert James Clay  <jame@rocasa.us>
 
  - Add a text file with message testing content.
 
