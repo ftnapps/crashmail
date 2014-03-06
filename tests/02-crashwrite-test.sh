@@ -28,7 +28,7 @@ it_generates_a_packet () {
 
 it_generates_named_packet () {
 	$__tools__/crashwrite DIR spool/temp \
-		FILENAME test.pkt \
+		TEXT test.pkt \
 		FROMNAME "Test Sysop" \
 		FROMADDR "99:99/1" \
 		TONAME "Test User" \
