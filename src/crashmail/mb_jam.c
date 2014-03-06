@@ -1,16 +1,12 @@
 #include <jamlib/jam.h>
 
-#define NO_TYPEDEF_UCHAR
-#define NO_TYPEDEF_USHORT
-#define NO_TYPEDEF_ULONG
-
 #include "crashmail.h"
 
 #define MIN(a,b)  ((a)<(b)? (a):(b))
 
 struct openbase
 {
-   ulong lastuse;
+   uint32_t lastuse;
    s_JamBase* Base_PS;
    struct jam_Area *area;
 };
@@ -20,20 +16,20 @@ struct jam_Area
    struct jam_Area *Next;
    struct Area *area;
    s_JamBase *Base_PS;
-   ulong BaseNum;
-   ulong OldNum;
-   ulong OldHighWater;
-   ulong HighWater;
+   uint32_t BaseNum;
+   uint32_t OldNum;
+   uint32_t OldHighWater;
+   uint32_t HighWater;
    bool newmsg;
 };
 
 struct jbList jam_AreaList;
 struct openbase *jam_openbases;
 
-ulong jam_lastnum;
+uint32_t jam_lastnum;
 long jam_utcoffset;
 
-int jam_linkmb(struct Area *area,ulong oldnum);
+int jam_linkmb(struct Area *area,uint32_t oldnum);
 
 s_JamBase *jam_openbase(struct jam_Area *area)
 {
@@ -99,7 +95,7 @@ s_JamBase *jam_openbase(struct jam_Area *area)
 struct jam_Area *jam_getarea(struct Area *area)
 {
    struct jam_Area *ja;
-   ulong num;
+   uint32_t num;
    s_JamBaseHeader Header_S;
 
    /* Check if area already exists */
@@ -151,16 +147,16 @@ struct jam_Area *jam_getarea(struct Area *area)
 
 void jam_gethighwater(struct jam_Area *ja)
 {
-   uchar buf[200];
+   char buf[200];
    osFile fh;
-   ulong num;
+   uint32_t num;
 
    strcpy(buf,ja->area->Path);
    strcat(buf,".cmhw");
 
    if((fh=osOpen(buf,MODE_OLDFILE)))
    {
-      if(osRead(fh,&num,sizeof(ulong)))
+      if(osRead(fh,&num,sizeof(uint32_t)))
       {
          ja->HighWater=num;
          ja->OldHighWater=num;
@@ -172,9 +168,9 @@ void jam_gethighwater(struct jam_Area *ja)
 
 void jam_writehighwater(struct jam_Area *ja)
 {
-   uchar buf[200];
+   char buf[200];
    osFile fh;
-   ulong num;
+   uint32_t num;
 
    strcpy(buf,ja->area->Path);
    strcat(buf,".cmhw");
@@ -183,7 +179,7 @@ void jam_writehighwater(struct jam_Area *ja)
 
    if((fh=osOpen(buf,MODE_NEWFILE)))
    {
-      osWrite(fh,&num,sizeof(ulong));
+      osWrite(fh,&num,sizeof(uint32_t));
       osClose(fh);
    }
 }
@@ -247,7 +243,7 @@ bool jam_afterfunc(bool success)
 
 bool jam_nomem;
 
-void jam_addfield(s_JamSubPacket *SubPacket_PS,ulong fieldnum,uchar *fielddata)
+void jam_addfield(s_JamSubPacket *SubPacket_PS,uint32_t fieldnum,char *fielddata)
 {
    s_JamSubfield	Subfield_S;
 
@@ -262,9 +258,9 @@ void jam_addfield(s_JamSubPacket *SubPacket_PS,ulong fieldnum,uchar *fielddata)
 
 struct flag
 {
-   uchar *name;
-   ulong jamflagbit;
-   ulong fidoflagbit;
+   char *name;
+   uint32_t jamflagbit;
+   uint32_t fidoflagbit;
 };
 
 struct flag jam_flagarray[] =
@@ -289,7 +285,7 @@ struct flag jam_flagarray[] =
   { "",    MSG_ORPHAN,      FLAG_ORPHAN      }, 
   { NULL,  0,               0                } };
 
-ulong jam_findflag(uchar *name)
+uint32_t jam_findflag(char *name)
 {
    int c;
 
@@ -306,10 +302,10 @@ bool jam_importfunc(struct MemMessage *mm,struct Area *area)
    struct jam_Area *ja;
    s_JamSubPacket*	SubPacket_PS;
    s_JamMsgHeader	Header_S;
-   uchar buf[100],newflags[100],flag[10];
-   ulong c,f,jbcpos,linebegin,linelen;
-   uchar *msgtext;
-   ulong msgsize,msgpos;
+   char buf[100],newflags[100],flag[10];
+   uint32_t c,f,jbcpos,linebegin,linelen;
+   char *msgtext;
+   uint32_t msgsize,msgpos;
    int res;
 
    /* Get an area to write to */
@@ -498,7 +494,7 @@ bool jam_importfunc(struct MemMessage *mm,struct Area *area)
 
                while(jbstrcpy(flag,buf,10,&jbcpos))
                {
-                  ulong flagbit;
+                  uint32_t flagbit;
 
                   if((flagbit=jam_findflag(flag)))
                   {      
@@ -547,8 +543,8 @@ bool jam_importfunc(struct MemMessage *mm,struct Area *area)
 
    if(config.cfg_Flags & CFG_IMPORTSEENBY)
    {
-      uchar *buf;
-      ulong c,d;
+      char *buf;
+      uint32_t c,d;
 
       if((buf=mmMakeSeenByBuf(&mm->SeenBy)))
       {
@@ -619,9 +615,9 @@ bool jam_importfunc(struct MemMessage *mm,struct Area *area)
    return(TRUE);
 }
 
-void jam_makekludge(struct MemMessage *mm,uchar *pre,uchar *data,ulong len)
+void jam_makekludge(struct MemMessage *mm,char *pre,char *data,uint32_t len)
 {
-   uchar *buf;
+   char *buf;
 
 	if(!(buf=osAlloc(strlen(pre)+len+10))) /* A few bytes extra */
 		return;
@@ -634,20 +630,20 @@ void jam_makekludge(struct MemMessage *mm,uchar *pre,uchar *data,ulong len)
 	osFree(buf);
 }
 
-bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemMessage *mm),bool isrescanning)
+bool jam_ExportJAMNum(struct Area *area,uint32_t num,bool (*handlefunc)(struct MemMessage *mm),bool isrescanning)
 {
    struct MemMessage *mm;
    struct jam_Area *ja;
-   uchar *msgtext;
-   uchar buf[200],domain[20];
+   char *msgtext;
+   char buf[200],domain[20];
    int res,c;
    s_JamSubPacket*      SubPacket_PS;
    s_JamMsgHeader	Header_S;
    s_JamSubfield* Field_PS;
    struct Node4D n4d;
    bool hasaddr;
-   uchar flagsbuf[200],filesubject[200];
-   ushort oldattr;
+   char flagsbuf[200],filesubject[200];
+   uint16_t oldattr;
 
    /* Open the area */
 
@@ -666,7 +662,7 @@ bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemM
       }
       else
       {
-         LogWrite(1,TOSSINGERR,"Failed to read message #%lu in JAM messagebase \"%s\"",num,area->Path);
+         LogWrite(1,TOSSINGERR,"Failed to read message #%u in JAM messagebase \"%s\"",num,area->Path);
          return(TRUE);
       }
    }
@@ -709,7 +705,7 @@ bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemM
 
       if(res)
       {
-         LogWrite(1,TOSSINGERR,"Failed to read message #%lu in JAM messagebase \"%s\"",num,area->Path);
+         LogWrite(1,TOSSINGERR,"Failed to read message #%u in JAM messagebase \"%s\"",num,area->Path);
          JAM_DelSubPacket(SubPacket_PS);
          return(FALSE);
       }
@@ -932,8 +928,8 @@ bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemM
 
       if(mm->Area[0])
       {
-         ulong textpos,d;
-         uchar originbuf[200];
+         uint32_t textpos,d;
+         char originbuf[200];
          struct Node4D n4d;
 
          textpos=0;
@@ -1023,7 +1019,7 @@ bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemM
 	   }
 
       if(JAM_ChangeMsgHeader(ja->Base_PS,num-ja->BaseNum,&Header_S))
-         LogWrite(1,TOSSINGERR,"Failed to update header of message #%lu in JAM messagebase \"%s\"",num,area->Path);
+         LogWrite(1,TOSSINGERR,"Failed to update header of message #%u in JAM messagebase \"%s\"",num,area->Path);
 
       JAM_UnlockMB(ja->Base_PS);
    }
@@ -1034,7 +1030,7 @@ bool jam_ExportJAMNum(struct Area *area,ulong num,bool (*handlefunc)(struct MemM
 
 bool jam_exportfunc(struct Area *area,bool (*handlefunc)(struct MemMessage *mm))
 {
-   ulong start,end;
+   uint32_t start,end;
    struct jam_Area *ja;
 
    /* Open the area */
@@ -1074,9 +1070,9 @@ bool jam_exportfunc(struct Area *area,bool (*handlefunc)(struct MemMessage *mm))
    return(TRUE);
 }
 
-bool jam_rescanfunc(struct Area *area,ulong max,bool (*handlefunc)(struct MemMessage *mm))
+bool jam_rescanfunc(struct Area *area,uint32_t max,bool (*handlefunc)(struct MemMessage *mm))
 {
-   ulong start;
+   uint32_t start;
    struct jam_Area *ja;
 
    /* Open the area */
@@ -1117,7 +1113,7 @@ struct Msg
    unsigned long OldReplyNext;
 };
 
-int jam_CompareMsgIdReply(s_JamBase *Base_PS,struct Msg *msgs,ulong msgidmsg,ulong replymsg)
+int jam_CompareMsgIdReply(s_JamBase *Base_PS,struct Msg *msgs,uint32_t msgidmsg,uint32_t replymsg)
 {
    int Status_I;
    s_JamMsgHeader 	MsgIdHeader_S;
@@ -1180,7 +1176,7 @@ int jam_CompareMsgIdReply(s_JamBase *Base_PS,struct Msg *msgs,ulong msgidmsg,ulo
 }
 
 /*  dest is a reply to num */
-void jam_setreply(struct Msg *msgs,ulong nummsgs,ulong base,ulong num,ulong dest)
+void jam_setreply(struct Msg *msgs,uint32_t nummsgs,uint32_t base,uint32_t num,uint32_t dest)
 {
    int n,times;
 
@@ -1201,7 +1197,7 @@ void jam_setreply(struct Msg *msgs,ulong nummsgs,ulong base,ulong num,ulong dest
       if (n < 0 || n >= nummsgs)
       {
          /* Oops! Base seems to be b0rken */
-         printf("Warning: message #%ld is linked to something outside the base\n", num + base);
+         printf("Warning: message #%d is linked to something outside the base\n", num + base);
          return;
       }
 
@@ -1213,7 +1209,7 @@ void jam_setreply(struct Msg *msgs,ulong nummsgs,ulong base,ulong num,ulong dest
 
 			if(times > 1000) /* Something appears to have gone wrong */
 			{
-		      printf("Warning: >1000 replies to message %ld or circular reply links\n",num+base);
+		      printf("Warning: >1000 replies to message %d or circular reply links\n",num+base);
 				return;
 			}
 
@@ -1223,7 +1219,7 @@ void jam_setreply(struct Msg *msgs,ulong nummsgs,ulong base,ulong num,ulong dest
          if (n < 0 || n >= nummsgs)
          {
             /* Oops! Base seems to be b0rken */
-            printf("Warning: message #%ld is linked to something outside the base\n", num + base);
+            printf("Warning: message #%d is linked to something outside the base\n", num + base);
             return;
          }
       }
@@ -1232,10 +1228,10 @@ void jam_setreply(struct Msg *msgs,ulong nummsgs,ulong base,ulong num,ulong dest
    }
 }
 
-int jam_linkmb(struct Area *area,ulong oldnum)
+int jam_linkmb(struct Area *area,uint32_t oldnum)
 {
    struct jam_Area *ja;
-   ulong nummsgs,res,c,d;
+   uint32_t nummsgs,res,c,d;
    struct Msg *msgs;
 
    printf("Linking JAM area %s                       \n",area->Tagname);

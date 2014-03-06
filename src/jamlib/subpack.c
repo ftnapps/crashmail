@@ -84,7 +84,7 @@ s_JamSubPacket* JAM_NewSubPacket( void )
 ***********************************************************************/
 int JAM_DelSubPacket( s_JamSubPacket* SubPack_PS )
 {
-    ulong i;
+    uint32_t i;
 
     if (!SubPack_PS)
 	return JAM_BAD_PARAM;
@@ -111,7 +111,7 @@ int JAM_DelSubPacket( s_JamSubPacket* SubPack_PS )
 s_JamSubfield* JAM_GetSubfield( s_JamSubPacket* SubPack_PS )
 {
     static s_JamSubPacket* LastPack_PS = NULL;
-    static ulong           NextIndex_I = 0;
+    static uint32_t           NextIndex_I = 0;
 
     if ( SubPack_PS ) {
 	LastPack_PS = SubPack_PS;
@@ -130,7 +130,7 @@ s_JamSubfield* JAM_GetSubfield( s_JamSubPacket* SubPack_PS )
 **                       (reentrant)
 **
 ***********************************************************************/
-s_JamSubfield* JAM_GetSubfield_R( s_JamSubPacket* SubPack_PS , ulong* Count_PI)
+s_JamSubfield* JAM_GetSubfield_R( s_JamSubPacket* SubPack_PS , uint32_t* Count_PI)
 {
     if ( *Count_PI < SubPack_PS->NumFields )
 	     return SubPack_PS->Fields[ (*Count_PI)++ ];
@@ -146,7 +146,7 @@ s_JamSubfield* JAM_GetSubfield_R( s_JamSubPacket* SubPack_PS , ulong* Count_PI)
 int JAM_PutSubfield( s_JamSubPacket* SubPack_PS, s_JamSubfield* Field_PS )
 {
     s_JamSubfield* 	NewField_PS;
-    uchar*		NewBuf_PC;
+    char*		NewBuf_PC;
 
     /* do we have to expand the array? */
     if ( SubPack_PS->NumFields == SubPack_PS->NumAlloc ) {
@@ -173,7 +173,7 @@ int JAM_PutSubfield( s_JamSubPacket* SubPack_PS, s_JamSubfield* Field_PS )
 
     /* allocate a new buffer */
     if ( Field_PS->DatLen ) {
-	NewBuf_PC = (uchar*) malloc( Field_PS->DatLen );
+	NewBuf_PC = (char*) malloc( Field_PS->DatLen );
 	if ( !NewBuf_PC )  {
 	    free (NewField_PS);
 	    return JAM_NO_MEMORY;

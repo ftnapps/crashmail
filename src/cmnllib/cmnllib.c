@@ -11,13 +11,13 @@
 
 struct idx
 {
-	ushort zone,net,node,point,region,hub;
-	ulong offset;
+	uint16_t zone,net,node,point,region,hub;
+	uint32_t offset;
 };
                   
-ulong cmnlerr;						                                               
+uint32_t cmnlerr;						                                               
 
-uchar *cmnlerrstr[] = 
+char *cmnlerrstr[] = 
 {
 	"",
 	"Failed to open nodelist index",
@@ -27,12 +27,12 @@ uchar *cmnlerrstr[] =
 	"Failed to open nodelist"
 };	
 
-ushort cmnlgetuword(uchar *buf,ulong offset)
+uint16_t cmnlgetuword(uint8_t *buf,uint32_t offset)
 {
-   return (ushort)(buf[offset]+256*buf[offset+1]);
+   return (uint16_t)(buf[offset]+256*buf[offset+1]);
 }
 
-long cmnlgetlong(uchar *buf,ulong offset)
+uint32_t cmnlgetlong(uint8_t *buf,uint32_t offset)
 {
    return (long) buf[offset]+
 				 	  buf[offset+1]*256+
@@ -40,10 +40,10 @@ long cmnlgetlong(uchar *buf,ulong offset)
 					  buf[offset+3]*256*256*256;
 }
 
-osFile cmnlOpenNL(uchar *dir)
+osFile cmnlOpenNL(char *dir)
 {
 	osFile fh;
-	uchar buf[200];
+	char buf[200];
 
 	MakeFullPath(dir,"cmnodelist.index",buf,200);
 
@@ -71,26 +71,26 @@ void cmnlCloseNL(osFile nl)
 	osClose(nl);
 }
 
-bool cmnlFindNL(osFile nl,uchar *dir,struct cmnlIdx *cmnlidx,uchar *line,ulong len)
+bool cmnlFindNL(osFile nl,char *dir,struct cmnlIdx *cmnlidx,char *line,uint32_t len)
 {
-	uchar buf[200];
-	uchar nlname[100];
+	char buf[200];
+	char nlname[100];
 	struct idx idx;
 	bool found;
 	osFile fh;
-	uchar binbuf[16];
-	
+	uint8_t binbuf[16];
+
 	osSeek(nl,4,OFFSET_BEGINNING);
-	
+
 	found=FALSE;
-	
+
 	while(!found)
 	{
-	   if(osRead(nl,nlname,100)!=100)
-   	{
-	   	cmnlerr=CMNLERR_NODE_NOT_FOUND;
-		   return(FALSE);
-   	}
+		if(osRead(nl,nlname,100)!=100)
+		{
+			cmnlerr=CMNLERR_NODE_NOT_FOUND;
+			return(FALSE);
+		}
 
 		idx.offset=0;
 
@@ -112,7 +112,7 @@ bool cmnlFindNL(osFile nl,uchar *dir,struct cmnlIdx *cmnlidx,uchar *line,ulong l
 			idx.offset=cmnlgetlong(binbuf,12);
 
 			found=TRUE;
-			
+
 			if(cmnlidx->zone  != idx.zone)  found=FALSE;
 			if(cmnlidx->net   != idx.net)   found=FALSE;
 			if(cmnlidx->node  != idx.node)  found=FALSE;
@@ -127,7 +127,7 @@ bool cmnlFindNL(osFile nl,uchar *dir,struct cmnlIdx *cmnlidx,uchar *line,ulong l
 	{
 		return(TRUE);
 	}
-		
+
 	MakeFullPath(dir,nlname,buf,200);
 
 	if(!(fh=osOpen(buf,MODE_OLDFILE)))
@@ -135,15 +135,15 @@ bool cmnlFindNL(osFile nl,uchar *dir,struct cmnlIdx *cmnlidx,uchar *line,ulong l
 		cmnlerr=CMNLERR_NO_NODELIST;
 		return(FALSE);
 	}
-	
+
 	osSeek(fh,idx.offset,OFFSET_BEGINNING);
 	osFGets(fh,line,len);	
 	osClose(fh);
-	
+
 	return(TRUE);	
 }
 
-uchar *cmnlLastError(void)
+char *cmnlLastError(void)
 {
 	return cmnlerrstr[cmnlerr];
 }

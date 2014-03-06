@@ -1,5 +1,5 @@
 
-void MakeFullPath(uchar *path,uchar *file,uchar *dest,ulong destsize);
-uchar *GetFilePart(uchar *str);
+void MakeFullPath(char *path,char *file,char *dest,uint32_t destsize);
+char *GetFilePart(char *str);
 
 

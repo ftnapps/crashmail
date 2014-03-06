@@ -11,18 +11,18 @@
 bool messageend;
 bool shortread,longread;
 
-ushort getuword(uchar *buf,ulong offset)
+uint16_t getuword(uint8_t *buf,uint32_t offset)
 {
-   return (ushort)(buf[offset]+256*buf[offset+1]);
+   return (uint16_t)(buf[offset]+256*buf[offset+1]);
 }
 
-void putuword(uchar *buf,ulong offset,ushort num)
+void putuword(uint8_t *buf,uint32_t offset,uint16_t num)
 {
    buf[offset]=num%256;
    buf[offset+1]=num/256;
 }
 
-ulong ReadNull(uchar *buf, ulong maxlen, osFile fh)
+uint32_t ReadNull(char *buf, uint32_t maxlen, osFile fh)
 {
    /* Reads from fh until buffer full or NULL */
 
@@ -48,7 +48,7 @@ ulong ReadNull(uchar *buf, ulong maxlen, osFile fh)
    return(c);
 }
 
-ulong ReadCR(uchar *buf, ulong maxlen, osFile fh)
+uint32_t ReadCR(char *buf, uint32_t maxlen, osFile fh)
 {
    /* Reads from fh until buffer full or CR */
 
@@ -73,17 +73,17 @@ ulong ReadCR(uchar *buf, ulong maxlen, osFile fh)
    return(c);
 }
 
-bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(struct MemMessage *mm))
+bool ReadPkt(char *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(struct MemMessage *mm))
 {
    osFile fh;
    struct Aka *tmpaka;
    struct ConfigNode *tmpcnode;
-   ulong rlen,msgnum,msgoffset;
-   uchar buf[200];
-   uchar PktHeader[SIZE_PKTHEADER];
-   uchar PktMsgHeader[SIZE_PKTMSGHEADER];
+   uint32_t msgnum,msgoffset;
+   char buf[200];
+   uint8_t PktHeader[SIZE_PKTHEADER];
+   uint8_t PktMsgHeader[SIZE_PKTMSGHEADER];
    struct Node4D PktOrig,PktDest;
-   uchar *monthnames[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","???"};
+   char *monthnames[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","???"};
    struct MemMessage *mm;
    struct TextChunk *chunk;
    bool pkt_pw,pkt_4d,pkt_5d;
@@ -96,7 +96,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       if(res != 0)
       {
-            LogWrite(1,SYSTEMERR,"BEFORETOSS command failed for %s: %lu",pkt,res);
+            LogWrite(1,SYSTEMERR,"BEFORETOSS command failed for %s: %u",pkt,res);
          return(FALSE);
       }
    }
@@ -123,7 +123,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
    if(!(fh=osOpen(pkt,MODE_OLDFILE)))
    {
-		ulong err=osError();
+		uint32_t err=osError();
       LogWrite(1,SYSTEMERR,"Unable to open %s",pkt);
 		LogWrite(1,SYSTEMERR,"Error: %s",osErrorMsg(err));
       mmFree(mm);
@@ -266,11 +266,11 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
    if(pkt_5d)
    {
-      uchar domain[10];
+      char domain[10];
 
-      mystrncpy(domain,&PktHeader[PKTHEADER45_ORIGDOMAIN],9);
+      mystrncpy(domain,(char *)&PktHeader[PKTHEADER45_ORIGDOMAIN],9);
 
-      LogWrite(1,ACTIONINFO,"Tossing %s (%luK) from %d:%d/%d.%d@%s %s",
+      LogWrite(1,ACTIONINFO,"Tossing %s (%uK) from %d:%d/%d.%d@%s %s",
                                                               fe->Name,
                                                               (fe->Size+512)/1024,
                                                               PktOrig.Zone,
@@ -289,7 +289,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
       if(month > 11)
          month=12;
 
-      LogWrite(1,ACTIONINFO,"Tossing %s (%luK) from %d:%d/%d.%d (%02d-%s-%02d %02d:%02d:%02d) %s",
+      LogWrite(1,ACTIONINFO,"Tossing %s (%uK) from %d:%d/%d.%d (%02d-%s-%02d %02d:%02d:%02d) %s",
          fe->Name,
          (fe->Size+512)/1024,
          PktOrig.Zone,
@@ -307,7 +307,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
    if(tmpcnode)
    {
-      strncpy(buf,&PktHeader[PKTHEADER_PASSWORD],8);
+      strncpy(buf,(char *)&PktHeader[PKTHEADER_PASSWORD],8);
       buf[8]=0;
 
       if(tmpcnode->PacketPW[0]!=0 && stricmp(buf,tmpcnode->PacketPW)!=0 && !no_security)
@@ -324,10 +324,10 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
    if(osRead(fh,PktMsgHeader,SIZE_PKTMSGHEADER) < 2)
    {
-      LogWrite(1,TOSSINGERR,"Message header for msg #1 (offset %ld) is too short",msgoffset);
+      LogWrite(1,TOSSINGERR,"Message header for msg #1 (offset %d) is too short",msgoffset);
       osClose(fh);
       mmFree(mm);
-      sprintf(buf,"Message header for msg #1 (offset %ld) is too short",msgoffset);
+      sprintf(buf,"Message header for msg #1 (offset %d) is too short",msgoffset);
       BadFile(pkt,buf);
       return(TRUE);
    }
@@ -338,7 +338,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
    {
       msgnum++;
 
-      printf("Message %lu              \x0d",msgnum);
+      printf("Message %u              \x0d",msgnum);
       fflush(stdout);
 
       /* Init variables */
@@ -374,8 +374,8 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       if(shortread)
       {
-         LogWrite(1,TOSSINGERR,"Message header for msg #%lu (offset %ld) is short",msgnum,msgoffset);
-         sprintf(buf,"Message header for msg #%lu (offset %ld) is short",msgnum,msgoffset);
+         LogWrite(1,TOSSINGERR,"Message header for msg #%u (offset %d) is short",msgnum,msgoffset);
+         sprintf(buf,"Message header for msg #%u (offset %d) is short",msgnum,msgoffset);
          osClose(fh);
          mmFree(mm);
          BadFile(pkt,buf);
@@ -384,8 +384,8 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       if(longread)
       {
-         LogWrite(1,TOSSINGERR,"Header strings too long in msg #%lu (offset %ld)",msgnum,msgoffset);
-         sprintf(buf,"Header strings too long in msg #%lu (offset %ld)",msgnum,msgoffset);
+         LogWrite(1,TOSSINGERR,"Header strings too long in msg #%u (offset %d)",msgnum,msgoffset);
+         sprintf(buf,"Header strings too long in msg #%u (offset %d)",msgnum,msgoffset);
          osClose(fh);
          mmFree(mm);
          BadFile(pkt,buf);
@@ -396,7 +396,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       messageend=FALSE;
 
-      rlen=ReadCR(buf,200,fh);
+      ReadCR(buf,200,fh);
 
       /* Echomail or netmail? */
 
@@ -419,14 +419,14 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       while(!messageend)
       {
-         rlen=ReadCR(buf,200,fh);
+         ReadCR(buf,200,fh);
 
          if(shortread)
          {
             osClose(fh);
             mmFree(mm);
-            LogWrite(1,TOSSINGERR,"Got unexpected EOF when reading msg #%lu (offset %ld)",msgnum,msgoffset);
-            sprintf(buf,"Got unexpected EOF when reading msg #%lu (offset %ld)",msgnum,msgoffset);
+            LogWrite(1,TOSSINGERR,"Got unexpected EOF when reading msg #%u (offset %d)",msgnum,msgoffset);
+            sprintf(buf,"Got unexpected EOF when reading msg #%u (offset %d)",msgnum,msgoffset);
             BadFile(pkt,buf);
             return(TRUE);
          }
@@ -449,7 +449,7 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
          
       if(tmpcnode)
       {
-         ulong size;
+         uint32_t size;
          
          size=0;
 
@@ -483,10 +483,10 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
 
       if(osRead(fh,PktMsgHeader,SIZE_PKTMSGHEADER) < 2)
       {
-         LogWrite(1,TOSSINGERR,"Packet header too short for msg #%lu (offset %ld)",msgnum+1,msgoffset);
+         LogWrite(1,TOSSINGERR,"Packet header too short for msg #%u (offset %d)",msgnum+1,msgoffset);
          osClose(fh);
          mmFree(mm);
-         sprintf(buf,"Packet header too short for msg #%lu (offset %ld)",msgnum+1,msgoffset);
+         sprintf(buf,"Packet header too short for msg #%u (offset %d)",msgnum+1,msgoffset);
          BadFile(pkt,buf);
          return(TRUE);
       }
@@ -496,8 +496,8 @@ bool ReadPkt(uchar *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(s
    {
       osClose(fh);
       mmFree(mm);
-      LogWrite(1,TOSSINGERR,"Unknown message type %lu for message #%lu (offset %ld)",getuword(PktMsgHeader,PKTMSGHEADER_PKTTYPE),msgnum+1,msgoffset);
-      sprintf(buf,"Unknown message type %u for message #%lu (offset %ld)",getuword(PktMsgHeader,PKTMSGHEADER_PKTTYPE),msgnum+1,msgoffset);
+      LogWrite(1,TOSSINGERR,"Unknown message type %u for message #%u (offset %d)",getuword(PktMsgHeader,PKTMSGHEADER_PKTTYPE),msgnum+1,msgoffset);
+      sprintf(buf,"Unknown message type %u for message #%u (offset %d)",getuword(PktMsgHeader,PKTMSGHEADER_PKTTYPE),msgnum+1,msgoffset);
       BadFile(pkt,buf);
       return(TRUE);
    }
@@ -520,14 +520,14 @@ struct Pkt
 {
    struct Pkt *Next;
    osFile fh;
-   ulong hexnum;
-   ulong Len;
-   ushort Type;
+   uint32_t hexnum;
+   uint32_t Len;
+   uint16_t Type;
    struct Node4D Dest;
    struct Node4D Orig;
 };
 
-void pktWrite(struct Pkt *pkt,uchar *buf,ulong len)
+void pktWrite(struct Pkt *pkt,uint8_t *buf,uint32_t len)
 {
    if(!osWrite(pkt->fh,buf,len))
 		{ ioerror=TRUE; ioerrornum=osError(); }
@@ -535,12 +535,12 @@ void pktWrite(struct Pkt *pkt,uchar *buf,ulong len)
    pkt->Len+=len;
 }
 
-void WriteNull(struct Pkt *pkt,uchar *str)
+void WriteNull(struct Pkt *pkt,char *str)
 {
-   pktWrite(pkt,str,(ulong)(strlen(str)+1));
+   pktWrite(pkt,(uint8_t *)str,(uint32_t)(strlen(str)+1));
 }
 
-struct Pkt *FindPkt(struct Node4D *node,struct Node4D *mynode,ushort type)
+struct Pkt *FindPkt(struct Node4D *node,struct Node4D *mynode,uint16_t type)
 {
    struct Pkt *pkt;
 
@@ -552,16 +552,16 @@ struct Pkt *FindPkt(struct Node4D *node,struct Node4D *mynode,ushort type)
 }
 
 time_t lastt;
-ulong serial;
+uint32_t serial;
 
-struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D *orig,ushort type)
+struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D *orig,uint16_t type)
 {
-   uchar buf[100],buf2[100];
+   char buf[100],buf2[100];
    struct Pkt *pkt;
-   ulong num,c;
+   uint32_t num,c;
    time_t t;
    struct tm *tp;
-   uchar PktHeader[SIZE_PKTHEADER];
+   uint8_t PktHeader[SIZE_PKTHEADER];
 
    do
    {
@@ -571,7 +571,7 @@ struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D 
       if(serial == 256) serial=0;
       lastt=t; 
       num = (t<<8) + serial;
-      sprintf(buf2,"%08lx.newpkt",num);
+      sprintf(buf2,"%08x.newpkt",num);
       
       MakeFullPath(config.cfg_PacketCreate,buf2,buf,100);
    } while(osExists(buf));
@@ -584,7 +584,7 @@ struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D 
 
    if(!(pkt->fh=osOpen(buf,MODE_NEWFILE)))
    {
-		ulong err=osError();
+		uint32_t err=osError();
       LogWrite(1,SYSTEMERR,"Unable to create packet %s",buf);
 		LogWrite(1,SYSTEMERR,"Error: %s",osErrorMsg(err));
       osFree(pkt);
@@ -635,7 +635,7 @@ struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D 
       PktHeader[PKTHEADER_PASSWORD+c]=0;
 
    if(node)
-      strncpy(&PktHeader[PKTHEADER_PASSWORD],node->PacketPW,8);
+      strncpy((char *)&PktHeader[PKTHEADER_PASSWORD],node->PacketPW,8);
 
    pktWrite(pkt,PktHeader,SIZE_PKTHEADER);
 
@@ -651,13 +651,13 @@ struct Pkt *CreatePkt(struct Node4D *dest,struct ConfigNode *node,struct Node4D 
 
 void FinishPacket(struct Pkt *pkt)
 {
-   pktWrite(pkt,"",1);
-   pktWrite(pkt,"",1);
+   pktWrite(pkt,(uint8_t *)"",1);
+   pktWrite(pkt,(uint8_t *)"",1);
    osClose(pkt->fh);
 
    if(pkt->hexnum)
    {
-      uchar oldname[200],newname[200],buf1[100],buf2[100],*typestr;
+      char oldname[200],newname[200],buf1[100],buf2[100],*typestr;
 
       /* Create packet name */
 
@@ -675,9 +675,9 @@ void FinishPacket(struct Pkt *pkt)
                               break;
       }
 
-      sprintf(buf1,"%08lx.newpkt",pkt->hexnum);
+      sprintf(buf1,"%08x.newpkt",pkt->hexnum);
 
-      sprintf(buf2,"%08lx_%s_%d_%d_%d_%d.newpkt",
+      sprintf(buf2,"%08x_%s_%d_%d_%d_%d.newpkt",
          pkt->hexnum,
          typestr,
          pkt->Dest.Zone,
@@ -690,7 +690,7 @@ void FinishPacket(struct Pkt *pkt)
 
 		if(!osRename(oldname,newname))
 		{
-			ulong err=osError();
+			uint32_t err=osError();
 			LogWrite(1,SYSTEMERR,"Failed to rename %s to %s",oldname,newname);
 			LogWrite(1,SYSTEMERR,"Error: %s",osErrorMsg(err));
 		}	
@@ -715,7 +715,7 @@ void ClosePackets(void)
 
 bool WriteMsgHeader(struct Pkt *pkt,struct MemMessage *mm)
 {
-   uchar PktMsgHeader[SIZE_PKTMSGHEADER];
+   uint8_t PktMsgHeader[SIZE_PKTMSGHEADER];
 
    putuword(PktMsgHeader,PKTMSGHEADER_PKTTYPE,0x0002);
    putuword(PktMsgHeader,PKTMSGHEADER_ORIGNODE,mm->OrigNode.Node);
@@ -740,16 +740,16 @@ bool WriteMsgHeader(struct Pkt *pkt,struct MemMessage *mm)
 
 bool WritePath(struct Pkt *pkt,struct jbList *list)
 {
-   ushort c;
+   uint16_t c;
    struct Path *path;
 
    for(path=(struct Path *)list->First;path;path=path->Next)
       for(c=0;c<path->Paths;c++)
          if(path->Path[c][0]!=0)
          {
-            pktWrite(pkt,"\x01PATH: ",7);
-            pktWrite(pkt,path->Path[c],(ulong)strlen(path->Path[c]));
-            pktWrite(pkt,"\x0d",1);
+            pktWrite(pkt,(uint8_t *)"\x01PATH: ",7);
+            pktWrite(pkt,(uint8_t *)path->Path[c],(uint32_t)strlen(path->Path[c]));
+            pktWrite(pkt,(uint8_t *)"\x0d",1);
          }
 
    if(ioerror)
@@ -760,12 +760,12 @@ bool WritePath(struct Pkt *pkt,struct jbList *list)
 
 bool WriteSeenBy(struct Pkt *pkt,struct jbList *list)
 {
-   uchar *buf;
+   char *buf;
 
    if(!(buf=mmMakeSeenByBuf(list)))
       return(FALSE);
 
-   pktWrite(pkt,buf,(ulong)strlen(buf));
+   pktWrite(pkt,(uint8_t *)buf,(uint32_t)strlen(buf));
 
    osFree(buf);
 
@@ -774,11 +774,11 @@ bool WriteSeenBy(struct Pkt *pkt,struct jbList *list)
 
 bool WriteEchoMail(struct MemMessage *mm,struct ConfigNode *node, struct Aka *aka)
 {
-   uchar buf[100];
+   char buf[100];
    struct Node4D *From4D;
    struct Pkt *pkt;
    struct TextChunk  *chunk;
-   ulong size;
+   uint32_t size;
 
    From4D=&aka->Node;
 
@@ -819,14 +819,14 @@ bool WriteEchoMail(struct MemMessage *mm,struct ConfigNode *node, struct Aka *ak
 
    sprintf(buf,"AREA:%s\x0d",mm->Area);
 
-   pktWrite(pkt,buf,(ulong)strlen(buf));
+   pktWrite(pkt,(uint8_t *)buf,(uint32_t)strlen(buf));
 
    if(ioerror)
       return(FALSE);
 
    for(chunk=(struct TextChunk *)mm->TextChunks.First;chunk;chunk=chunk->Next)
    {
-      pktWrite(pkt,chunk->Data,chunk->Length);
+      pktWrite(pkt,(uint8_t *)chunk->Data,chunk->Length);
       
       if(ioerror)
          return(FALSE);
@@ -889,7 +889,7 @@ bool WriteEchoMail(struct MemMessage *mm,struct ConfigNode *node, struct Aka *ak
    if(!WritePath(pkt,&mm->Path))
       return(FALSE);
 
-   pktWrite(pkt,"",1);
+   pktWrite(pkt,(uint8_t *)"",1);
 
    return(TRUE);
 }
@@ -900,7 +900,7 @@ bool WriteNetMail(struct MemMessage *mm,struct Node4D *dest,struct Aka *aka)
    struct ConfigNode *cnode;
    struct TextChunk *chunk;
   	struct Node4D *From4D;
-   ulong size;
+   uint32_t size;
 
    toss_written++;
 
@@ -947,13 +947,13 @@ bool WriteNetMail(struct MemMessage *mm,struct Node4D *dest,struct Aka *aka)
 
    for(chunk=(struct TextChunk *)mm->TextChunks.First;chunk;chunk=chunk->Next)
    {
-      pktWrite(pkt,chunk->Data,chunk->Length);
+      pktWrite(pkt,(uint8_t *)chunk->Data,chunk->Length);
 
       if(ioerror)
          return(FALSE);
    }
 
-   pktWrite(pkt,"",1);
+   pktWrite(pkt,(uint8_t *)"",1);
 
    return(TRUE);
 }
