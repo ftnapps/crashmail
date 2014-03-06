@@ -1,3 +1,9 @@
+2014-03-06 08:15  Lars Kellogg-Stedman  <lars@seas.harvard.edu>
+
+ - Convert from ulong/ushort to stdint types in src/cmnllib/, src/jamlib/, src/crashmail/,
+   src/shared/, and src/tools/.
+
+
 2013-02-17 19:21  Robert James Clay  <jame@rocasa.us>
 
  - Release as version 1.4
