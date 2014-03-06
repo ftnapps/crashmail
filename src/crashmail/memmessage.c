@@ -1,11 +1,11 @@
 #include "crashmail.h"
 
-bool mmAddNodes2DList(struct jbList *list,ushort net,ushort node)
+bool mmAddNodes2DList(struct jbList *list,uint16_t net,uint16_t node)
 {
    /* Add a node to SEEN-BY list */
 
    struct Nodes2D *tmplist;
-   ushort num;
+   uint16_t num;
 
    /* Check if it already exists */
 
@@ -40,12 +40,12 @@ bool mmAddNodes2DList(struct jbList *list,ushort net,ushort node)
    return(TRUE);
 }
 
-void mmRemNodes2DList(struct jbList *list,ushort net,ushort node)
+void mmRemNodes2DList(struct jbList *list,uint16_t net,uint16_t node)
 {
    /* Rem a node from SEEN-BY list */
 
    struct Nodes2D *tmplist;
-   ushort num;
+   uint16_t num;
 
    for(tmplist=(struct Nodes2D *)list->First;tmplist;tmplist=tmplist->Next)
       for(num=0;num<tmplist->Nodes;num++)
@@ -59,7 +59,7 @@ void mmRemNodes2DList(struct jbList *list,ushort net,ushort node)
 void mmRemNodes2DListPat(struct jbList *list,struct Node2DPat *pat)
 {
    struct Nodes2D *tmplist;
-   ushort num;
+   uint16_t num;
 
    for(tmplist=(struct Nodes2D *)list->First;tmplist;tmplist=tmplist->Next)
       for(num=0;num<tmplist->Nodes;num++)
@@ -73,7 +73,7 @@ void mmRemNodes2DListPat(struct jbList *list,struct Node2DPat *pat)
 }
 
 
-bool mmAddPath(uchar *str,struct jbList *list)
+bool mmAddPath(char *str,struct jbList *list)
 {
    /* Add a node string to PATH list */
 
@@ -107,10 +107,10 @@ bool mmAddPath(uchar *str,struct jbList *list)
    return(TRUE);
 }
 
-bool mmAddBuf(struct jbList *chunklist,uchar *buf,ulong len)
+bool mmAddBuf(struct jbList *chunklist,char *buf,uint32_t len)
 {
    struct TextChunk *chunk,*oldchunk;
-	ulong copylen,d;
+	uint32_t copylen,d;
 
    if(len == 0)
       return(TRUE);
@@ -235,8 +235,8 @@ void mmFree(struct MemMessage *mm)
 
 struct TempSort
 {
-   ushort Net;
-   ushort Node;
+   uint16_t Net;
+   uint16_t Node;
 };
 
 int CompareSort(const void *t1,const void *t2)
@@ -260,8 +260,8 @@ bool mmSortNodes2D(struct jbList *list)
 {
    struct Nodes2D *tmp;
    struct TempSort *sorttemp;
-   ulong nodes=0;
-   ulong c,d;
+   uint32_t nodes=0;
+   uint32_t c,d;
 
    for(tmp=(struct Nodes2D *)list->First;tmp;tmp=tmp->Next)
       nodes+=tmp->Nodes;
@@ -307,13 +307,13 @@ bool mmSortNodes2D(struct jbList *list)
    return(TRUE);
 }
 
-bool AddSeenby(uchar *str,struct jbList *list)
+bool AddSeenby(char *str,struct jbList *list)
 {
    /* Add a node string to SEEN-BY list */
 
-   ulong c,d;
-   uchar buf[60];
-   ushort lastnet,num;
+   uint32_t c,d;
+   char buf[60];
+   uint16_t lastnet,num;
 
    c=0;
    lastnet=0;
@@ -359,11 +359,11 @@ bool AddSeenby(uchar *str,struct jbList *list)
    return(TRUE);
 }
 
-void ProcessKludge(struct MemMessage *mm,uchar *kludge)
+void ProcessKludge(struct MemMessage *mm,char *kludge)
 {
    struct Node4D node;
-   uchar buf[60];
-   ulong c,d;
+   char buf[60];
+   uint32_t c,d;
 
    if(strncmp(kludge,"\x01RESCANNED",10)==0)
    {
@@ -432,7 +432,7 @@ void ProcessKludge(struct MemMessage *mm,uchar *kludge)
 }
 
 
-bool mmAddLine(struct MemMessage *mm,uchar *buf)
+bool mmAddLine(struct MemMessage *mm,char *buf)
 {
    if(mm->Area[0] && strncmp(buf,"SEEN-BY:",8)==0)
       return AddSeenby(&buf[9],&mm->SeenBy);
@@ -454,17 +454,17 @@ bool mmAddLine(struct MemMessage *mm,uchar *buf)
    else if(buf[0] == 1)
       ProcessKludge(mm,buf);
 
-   return mmAddBuf(&mm->TextChunks,buf,(ulong)strlen(buf));
+   return mmAddBuf(&mm->TextChunks,buf,(uint32_t)strlen(buf));
 }
 
-uchar *mmMakeSeenByBuf(struct jbList *list)
+char *mmMakeSeenByBuf(struct jbList *list)
 {
-   uchar *text;
-   ulong seenbys,size;
+   char *text;
+   uint32_t seenbys,size;
    struct Nodes2D *nodes;
-   ulong c;
-   ushort lastnet;
-   uchar buf[100],buf2[50],buf3[20];
+   uint32_t c;
+   uint16_t lastnet;
+   char buf[100],buf2[50],buf3[20];
 
    /* Count seenbys */
 

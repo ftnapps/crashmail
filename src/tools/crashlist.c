@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
@@ -20,7 +21,7 @@
 #include <crashmail/version.h>
 
 #ifdef PLATFORM_AMIGA
-uchar *ver="$VER: CrashList " VERSION " " __AMIGADATE__;
+char *ver="$VER: CrashList " VERSION " " __AMIGADATE__;
 #endif
 
 #define ARG_DIRECTORY 0
@@ -31,19 +32,19 @@ struct argument args[] =
 
 struct idx
 {
-	ushort zone,net,node,point,region,hub;
-	ulong offset;
+	uint16_t zone,net,node,point,region,hub;
+	uint32_t offset;
 };
 
 bool nomem,diskfull;
 
-void putuword(uchar *buf,ulong offset,ushort num)
+void putuword(char *buf,uint32_t offset,uint16_t num)
 {
    buf[offset]=num%256;
    buf[offset+1]=num/256;
 }
 
-void putulong(uchar *buf,ulong offset,ulong num)
+void putulong(char *buf,uint32_t offset,uint32_t num)
 {
    buf[offset]=num%256;
    buf[offset+1]=(num / 256) % 256;
@@ -53,7 +54,7 @@ void putulong(uchar *buf,ulong offset,ulong num)
 
 void WriteIdx(osFile fh,struct idx *idx)
 {
-	uchar binbuf[16];
+	char binbuf[16];
 
 	putuword(binbuf,0,idx->zone);
 	putuword(binbuf,2,idx->net);
@@ -66,11 +67,11 @@ void WriteIdx(osFile fh,struct idx *idx)
 	osWrite(fh,binbuf,sizeof(binbuf));
 }
 
-uchar nlname[100];
-uchar *findfile,*finddir;
+char nlname[100];
+char *findfile,*finddir;
 time_t newest;
 
-bool isnodelistending(uchar *name)
+bool isnodelistending(char *name)
 {
    if(strlen(name)<4)   return(FALSE);
 
@@ -83,9 +84,9 @@ bool isnodelistending(uchar *name)
    return(TRUE);
 }
                                                  
-void scandirfunc(uchar *file)
+void scandirfunc(char *file)
 {
-	uchar buf[500];
+	char buf[500];
 	struct osFileEntry *fe;
 
 	if(isnodelistending(file))
@@ -108,7 +109,7 @@ void scandirfunc(uchar *file)
 	}
 }
 
-bool FindList(uchar *dir,uchar *file,uchar *dest)
+bool FindList(char *dir,char *file,char *dest)
 {
 	MakeFullPath(dir,file,dest,500);
 	
@@ -122,7 +123,7 @@ bool FindList(uchar *dir,uchar *file,uchar *dest)
 			
    if(!osScanDir(dir,scandirfunc))
    {
-		ulong err=osError();
+		uint32_t err=osError();
       printf("Failed to scan directory %s\n",dir);
 		printf("Error: %s\n",osErrorMsg(err));		
       return(FALSE);
@@ -139,10 +140,10 @@ bool FindList(uchar *dir,uchar *file,uchar *dest)
 	return(TRUE);
 }
 
-void ProcessList(uchar *dir,uchar *file,osFile ifh,ushort defzone)
+void ProcessList(char *dir,char *file,osFile ifh,uint16_t defzone)
 {
 	struct idx idx;
-	uchar buf[500];
+	char buf[500];
 	osFile nfh;
 	
 	if(!FindList(dir,file,buf))
@@ -150,13 +151,13 @@ void ProcessList(uchar *dir,uchar *file,osFile ifh,ushort defzone)
 	
 	if(!(nfh=osOpen(buf,MODE_OLDFILE)))
 	{
-		ulong err=osError();
+		uint32_t err=osError();
 		printf("Failed to read %s\n",buf);
 		printf("Error: %s\n",osErrorMsg(err));		
 		return;
 	}
 
-	strcpy(buf,(uchar *)GetFilePart(buf));
+	strcpy(buf,(char *)GetFilePart(buf));
 	printf("Processing nodelist %s...\n",buf);
 	osWrite(ifh,buf,100);
 
@@ -254,8 +255,8 @@ void ProcessList(uchar *dir,uchar *file,osFile ifh,ushort defzone)
 int main(int argc, char **argv)
 {
    osFile lfh,ifh;
-   uchar *dir,buf[200],cfgbuf[200],file[100];
-   ulong jbcpos,zone;  
+   char *dir,buf[200],cfgbuf[200],file[100];
+   uint32_t jbcpos,zone;  
 
    if(!osInit())
       exit(OS_EXIT_ERROR);
@@ -282,13 +283,13 @@ int main(int argc, char **argv)
 	dir=OS_CURRENT_DIR;
 	
    if(args[ARG_DIRECTORY].data)
-		dir=(uchar *)args[ARG_DIRECTORY].data;
+		dir=(char *)args[ARG_DIRECTORY].data;
 
 	MakeFullPath(dir,"cmnodelist.prefs",buf,200);
 		
    if(!(lfh=osOpen(buf,MODE_OLDFILE)))
    {
-		ulong err=osError();
+		uint32_t err=osError();
       printf("Failed to open %s for reading\n",buf);
 		printf("Error: %s\n",osErrorMsg(err));		
       osEnd();
@@ -299,7 +300,7 @@ int main(int argc, char **argv)
 
    if(!(ifh=osOpen(buf,MODE_NEWFILE)))
    {
-		ulong err=osError();
+		uint32_t err=osError();
       printf("Failed to open %s for writing (nodelist in use?)\n",buf);
 		printf("Error: %s\n",osErrorMsg(err));		
 		osClose(lfh);

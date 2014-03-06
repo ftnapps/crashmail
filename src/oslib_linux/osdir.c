@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -15,7 +16,7 @@
 #include <oslib/osmem.h>
 #include <oslib/osdir.h>
 
-bool osReadDir(uchar *dirname,struct jbList *filelist,bool (*acceptfunc)(uchar *filename))
+bool osReadDir(char *dirname,struct jbList *filelist,bool (*acceptfunc)(char *filename))
 {
    DIR *dir;
    struct dirent *dirent;
@@ -63,7 +64,7 @@ bool osReadDir(uchar *dirname,struct jbList *filelist,bool (*acceptfunc)(uchar *
    return(TRUE);
 }
 
-bool osScanDir(uchar *dirname,void (*func)(uchar *file))
+bool osScanDir(char *dirname,void (*func)(char *file))
 {
    DIR *dir;
    struct dirent *dirent;
@@ -79,7 +80,7 @@ bool osScanDir(uchar *dirname,void (*func)(uchar *file))
    return(TRUE);
 }
 
-struct osFileEntry *osGetFileEntry(uchar *file)
+struct osFileEntry *osGetFileEntry(char *file)
 {
    struct stat st;
    struct osFileEntry *tmp;

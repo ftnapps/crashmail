@@ -19,7 +19,7 @@ int syslogpri[] = {  LOG_INFO,		/* SYSTEMINFO */
 
 osFile logfh;
 
-bool OpenLogfile(uchar *logfile)
+bool OpenLogfile(char *logfile)
 {
 #ifdef OS_HAS_SYSLOG
 	if(stricmp(logfile,"syslog")==0)
@@ -32,7 +32,7 @@ bool OpenLogfile(uchar *logfile)
 
    if(!(logfh=osOpen(logfile,MODE_READWRITE)))
 	{
-		ulong err=osError();
+		uint32_t err=osError();
       printf("Failed to open logfile %s\n",config.cfg_LogFile);
 		printf("Error: %s\n",osErrorMsg(err));	
       return(FALSE);
@@ -57,15 +57,15 @@ void CloseLogfile(void)
    osClose(logfh);
 }
 
-uchar *categoryletters="-%=!/D+^?";
+char *categoryletters="-%=!/D+^?";
 
-void LogWrite(ulong level,ulong category,uchar *fmt,...)
+void LogWrite(uint32_t level,uint32_t category,char *fmt,...)
 {
    va_list args;
    time_t t;
    struct tm *tp;
-   uchar *monthnames[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","???"};
-   uchar buf[500];
+   char *monthnames[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","???"};
+   char buf[500];
    int i;
 
    if(level > config.cfg_LogLevel)

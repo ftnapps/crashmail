@@ -12,9 +12,9 @@
 
 struct argument
 {
-   ushort type;
-   uchar *name;
-	ushort flags;
+   uint16_t type;
+   char *name;
+	uint16_t flags;
    void *data;
 };
 
