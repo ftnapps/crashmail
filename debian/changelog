@@ -1,4 +1,4 @@
-crashmail (1.4-1~1) UNRELEASED; urgency=low
+crashmail (1.5-1~1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Multiple fixes for compile time build issues.
