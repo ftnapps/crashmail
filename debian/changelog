@@ -1,8 +1,8 @@
-crashmail (1.5-0precise1~1) UNRELEASED; urgency=low
+crashmail (1.5-0precise1~2) UNRELEASED; urgency=low
 
   * Test builds of Crashmail v1.5 for Ubuntu v12.04 (precise).
 
- -- Robert James Clay <jame@rocasa.us>  Thu,  6 Mar 2014 15:13:21 -0500
+ -- Robert James Clay <jame@rocasa.us>  Wed, 26 Mar 2014 16:43:13 -0500
 
 crashmail (1.4-0precise1) precise; urgency=low
 
