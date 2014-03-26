@@ -6,18 +6,49 @@ Bug-Debian: http://bugs.debian.org/436670
 Author: Peter Karlsson <peterk@debian.org>
 Last-Update: 2013-02-08
 
---- crashmail-0.74.orig/src/Makefile.linux
-+++ crashmail-0.74/src/Makefile.linux
-@@ -38,7 +38,12 @@ DEFS = $(PLATFORMDEF) $(MBDEFS) $(NLDEFS
+--- a/src/Makefile.linux
++++ b/src/Makefile.linux
+@@ -38,7 +38,6 @@
  
  CC = gcc $(CPPFLAGS) $(CFLAGS) $(DEFS) $(LDFLAGS) -I $(INCDIR) -Wall
  RM = rm -f
-+# Edited for Debian - make it possible to install unstripped binaries
-+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
- STRIP = strip
-+else
-+STRIP = true
-+endif
+-STRIP = strip
  
  # Objects
+ 
+@@ -80,35 +79,27 @@
+ 
+ $(BINDIR)/crashmail$(EXESUFFIX) : $(CMOBJS) $(SHOBJS) $(NLOBJS) $(MBOBJS) $(OSLIB)
+ 	$(CC) -o $(BINDIR)/crashmail$(EXESUFFIX) $(CMOBJS) $(SHOBJS) $(NLOBJS) $(MBOBJS) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashmail$(EXESUFFIX)
+ 
+ $(BINDIR)/crashstats$(EXESUFFIX) : tools/crashstats.c $(SHOBJS) $(OSLIB)
+ 	$(CC) -o $(BINDIR)/crashstats$(EXESUFFIX) tools/crashstats.c $(SHOBJS) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashstats$(EXESUFFIX)
+ 
+ $(BINDIR)/crashlist$(EXESUFFIX) : tools/crashlist.c $(SHOBJS) $(OSLIB) 
+ 	$(CC) -o $(BINDIR)/crashlist$(EXESUFFIX) tools/crashlist.c $(SHOBJS) $(OSLIB) 
+-	$(STRIP) $(BINDIR)/crashlist$(EXESUFFIX)
+ 
+ $(BINDIR)/crashgetnode$(EXESUFFIX) : tools/crashgetnode.c $(SHOBJS) $(CMNLLIB) $(OSLIB)
+ 	$(CC)  -o $(BINDIR)/crashgetnode$(EXESUFFIX) tools/crashgetnode.c $(SHOBJS) $(CMNLLIB) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashgetnode$(EXESUFFIX)
+ 
+ $(BINDIR)/crashmaint$(EXESUFFIX) : tools/crashmaint.c $(SHOBJS) $(OSLIB) $(JAMLIB)
+ 	$(CC) -o $(BINDIR)/crashmaint$(EXESUFFIX) tools/crashmaint.c $(SHOBJS) $(OSLIB) $(JAMLIB)
+-	$(STRIP) $(BINDIR)/crashmaint$(EXESUFFIX)
+ 
+ $(BINDIR)/crashwrite$(EXESUFFIX) : tools/crashwrite.c $(SHOBJS) $(OSLIB)
+ 	$(CC) -o $(BINDIR)/crashwrite$(EXESUFFIX) tools/crashwrite.c $(SHOBJS) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashwrite$(EXESUFFIX)                          
+ 
+ $(BINDIR)/crashexport$(EXESUFFIX) : tools/crashexport.c $(SHOBJS) $(OSLIB)
+ 	$(CC) -o $(BINDIR)/crashexport$(EXESUFFIX) tools/crashexport.c $(SHOBJS) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashexport$(EXESUFFIX)     
+ 
+ $(BINDIR)/crashlistout$(EXESUFFIX) : tools/crashlistout.c $(SHOBJS) $(OSLIB)
+ 	$(CC) -o $(BINDIR)/crashlistout$(EXESUFFIX) tools/crashlistout.c $(SHOBJS) $(OSLIB)
+-	$(STRIP) $(BINDIR)/crashlistout$(EXESUFFIX)
+ 
+ # crashmail
  
