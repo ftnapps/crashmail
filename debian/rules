@@ -1,66 +1,31 @@
 #!/usr/bin/make -f
-# This is the rules for building CrashMail packages for Debian.
-# Based on sample: "GNU copyright 1997 to 1999 by Joey Hess".
-
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+# debian/rules for crashmail
 
 DPKG_EXPORT_BUILDFLAGS = 1
 export DEB_BUILD_MAINT_OPTIONS=hardening=-format
 include /usr/share/dpkg/buildflags.mk
 
-build: build-arch build-indep
-build-arch: build-stamp
-build-indep: build-stamp
-build-stamp:
-	dh_testdir
+%:
+	dh $@
 
-	
-	# Add here commands to compile the package.
-	mkdir bin
-	$(MAKE) linux
-
-	touch build-stamp
-
-clean:
-	dh_testdir
-	dh_testroot
+override_dh_auto_clean:
 	rm -rf bin
-	rm -f build-stamp
+	$(MAKE) -C src cleanlinux
 
-	# Add here commands to clean up after the build process.
-	$(MAKE) cleanlinux
+override_dh_auto_build:
+	mkdir bin
+	$(MAKE) -C src linux
 
-	dh_clean
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/crashmail
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	dh_installdirs
+override_dh_installchangelogs:
+	dh_installchangelogs 
 
-# Build architecture-independent files here.
-binary-indep: build install
-# We have nothing to do by default.
+override_dh_installdocs:
+	dh_installdocs --link-doc=crashmail
 
-# Build architecture-dependent files here.
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs
-	dh_installexamples doc/example.prefs
-	dh_installman man/*
-	dh_installchangelogs
-	dh_install
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+override_dh_strip:
+	dh_strip --dbg-package=crashmail-dbg
 
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
+.PHONY: override_dh_strip
