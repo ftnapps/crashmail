@@ -20,3 +20,18 @@ Description: JAM and *.MSG capable Fidonet tosser
  obvious reasons!) and the GUI configuration editor. The
  only feature that CrashMail II has and the old CrashMail
  hasn't is support for JAM messagebases.
+
+Package: crashmail-dbg
+Architecture: any
+Section: debug
+Depends: crashmail (= ${binary:Version}), ${misc:Depends}
+Description: debugging symbols for crashmail
+ CrashMail II is basically a more portable version of
+ CrashMail, a tosser for Amiga computers. Users of the old
+ Amiga version will probably find some things familiar
+ while some features are gone such as the ARexx port (for
+ obvious reasons!) and the GUI configuration editor. The
+ only feature that CrashMail II has and the old CrashMail
+ hasn't is support for JAM messagebases.
+ .
+ This package contains the debugging symbols for crashmail.
