@@ -1,6 +1,7 @@
 man/crashexport.1
 man/crashgetnode.1
 man/crashlist.1
+debian/crashlistout.1
 man/crashmail.1
 man/crashmaint.1
 man/crashstats.1
