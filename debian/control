@@ -4,9 +4,9 @@ Priority: extra
 Maintainer: Robert James Clay <jame@rocasa.us>
 Standards-Version: 3.9.4
 Build-Depends: debhelper (>= 8), dpkg-dev (>= 1.16.1~)
-Homepage: https://alioth.debian.org/projects/crashmail/
-Vcs-Browser: http://anonscm.debian.org/git/crashmail/crashmail.git
-Vcs-Git: git://anonscm.debian.org/git/crashmail/crashmail.git
+Homepage: http://ftnapps.sourceforge.net/crashmail.html
+Vcs-Browser: http://sourceforge.net/p/ftnapps/crashmail/code
+Vcs-Git: git://git.code.sf.net/p/ftnapps/crashmail/code
 
 Package: crashmail
 Architecture: any
