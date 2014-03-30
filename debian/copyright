@@ -1,26 +1,50 @@
-Originally obtained from: http://www.billingware.org/crashmail.html
-Currently hosted at: https://alioth.debian.org/projects/crashmail/
-Packaged for Debian by: Robert James Clay <jame@rocasa.us>
-Upstream author: Johan Billing <2:201/128.77> <billing@df.lth.se>
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Crashmail II
+Source: http://ftnapps.sourceforge.net/crashmail.html
+Upstream-Contact: Robert James Clay <jame@rocasa.us>
+Comment: This version constitutes a modified version, as some of the
+ configuration defaults have been changed to conform to Debian policy.
 
-JAMLIB is copyright 1999 BjÃ¶rn Stenberg. JAMLIB is released under the
-GNU Lesser General Public License. On Debian systems, the complete text of
-the GNU Lesser General Public License can be found in the
-/usr/share/common-licenses/LGPL-2.1 file.
+Files: *
+Copyright: 1998-2004, Johan Billing <billing@df.lth.se>
+           1999-2010, Peter Krefting <peter@softwolves.pp.se>
+           2009-2014, Robert James Clay <jame@rocasa.us>
+                2013, Lars Kellogg-Stedman <lars@oddbit.com>
+                2010, Petr Salinger <Petr.Salinger@seznam.cz> 
+License: permissive
+ Except where explicitly stated otherwise, all other parts of CrashMail are
+ copyright 1998-2004 Johan Billing. Permission to use, copy and distribute
+ CrashMail is granted provided that this copyright notice is included.
+ Permission to modify CrashMail is granted. Distributing modified versions of
+ CrashMail is allowed provided that the documentation clearly states that it
+ is a modified version. Parts of CrashMail may be freely used in other
+ projects as long as the documentation mentions the original copyright
+ holder.
 
-Except where explicitly stated otherwise, all other parts of CrashMail are
-copyright 1998-2004 Johan Billing. Permission to use, copy and distribute
-CrashMail is granted provided that this copyright notice is included.
-Permission to modify CrashMail is granted. Distributing modified versions of
-CrashMail is allowed provided that the documentation clearly states that it
-is a modified version. Parts of CrashMail may be freely used in other
-projects as long as the documentation mentions the original copyright
-holder.
+Files: jamlib/*
+Copyright: 1999 Björn Stenberg
+           1999-2004, Johan Billing <billing@df.lth.se>
+License: LGPL-2.1
+ JAMLIB is released under the GNU Lesser General Public License. On Debian
+ systems, the complete text of  the GNU Lesser General Public License can be
+ found in the  /usr/share/common-licenses/LGPL-2.1 file.
 
-The JAM message base proposal is:
-JAM(mbp) - Copyright 1993 Joaquim Homrighausen, Andrew Milner,
-                          Mats Birch, Mats Wallin.
-                          ALL RIGHTS RESERVED
-
-This version constitutes a modified version, as some of the of the
-configuration defaults have been changed to conform to the Debian policy.
+Files: tests/roundup
+Copyright: 2010 Blake Mizerany <blake.mizerany@gmail.com>
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
+ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
