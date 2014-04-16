@@ -22,7 +22,7 @@ License: permissive
  holder.
 
 Files: jamlib/*
-Copyright: 1999 Björn Stenberg
+Copyright: 1999 BjÃ¶rn Stenberg
            1999-2004, Johan Billing <billing@df.lth.se>
 License: LGPL-2.1
  JAMLIB is released under the GNU Lesser General Public License. On Debian
