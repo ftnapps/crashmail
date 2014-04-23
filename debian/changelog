@@ -20,7 +20,7 @@ crashmail (1.5-1) unstable; urgency=low
   * Add debian/crashlistout.1 for the missing man page.
   * Add file debian/watch for use by uscan.
 
- -- Robert James Clay <jame@rocasa.us>  Wed, 23 Apr 2014 06:14:40 -0400
+ -- Robert James Clay <jame@rocasa.us>  Wed, 23 Apr 2014 07:53:14 -0400
 
 crashmail (0.71-5) unstable; urgency=low
 
