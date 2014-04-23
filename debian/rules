@@ -19,9 +19,6 @@ override_dh_auto_build:
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/crashmail
 
-override_dh_installchangelogs:
-	dh_installchangelogs 
-
 override_dh_installdocs:
 	dh_installdocs --link-doc=crashmail
 
