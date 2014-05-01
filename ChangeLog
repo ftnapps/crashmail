@@ -1,6 +1,10 @@
-2014-05-01 03:01  Robert James Clay  <jame@rocasa.us>
+2014-05-01 03:34  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.6
 
  - Add missing man page for the crashlistout binary.
+
+ - Add thanks to Lars Kellogg-Stedman to the README file.
 
  - Remove duplicate entry from ChangeLog dated '2013-02-12 11:18'.
 
