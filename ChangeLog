@@ -1,3 +1,26 @@
+2014-05-16 19:12  Robert James Clay  <jame@rocasa.us>
+
+  - Merge changes by Niklas Lindholm from the merge of them that
+    Lars Kellogg-Stedman did in his repository.
+
+  - Correct two instances of mis-spelling 'noticeable' as 'noticable' in the
+    ChangeLog file.
+
+  - Correct an instance of mis-spelling 'messages' as 'messsages' in the
+    ChangeLog file.
+
+
+2016-09-02 01:34  Niklas Lindholm <niklas@nilin.se>
+
+ - Adding extra debug logging
+
+ - Changing so that HighWater (1.msg) is updated every time an area is scanned
+   and not just when a local message is exported.
+
+ - Tweaking the logging so the message about updating hwm is only logged when
+   the hwm is actually updated.
+
+
 2014-05-01 03:34  Robert James Clay  <jame@rocasa.us>
 
  - Release as version 1.6
@@ -290,7 +313,7 @@ Changes in version 0.7
    and /h with CrashMail and the related utilities to show the commandline help.
 
  - Improved the time it takes for CrashMail to load the configuration file.
-   Only noticable if you have a huge number of pass-through areas.
+   Only noticeable if you have a huge number of pass-through areas.
 
  - Fixed some bugs found in the ChangeLog from CrashEcho (thanks guys!)
 
@@ -392,7 +415,7 @@ Changes in version 0.6
  - CrashMail can now also export JAM messages with very long kludges without
    problems. Previous versions had problems with kludges longer than 200 chars.
 
- - LF characters are stripped when importing messsages to a JAM messagebase.
+ - LF characters are stripped when importing messages to a JAM messagebase.
 
  - Space characters are stripped in AreaFix commands. This means that AreaFix
    commands will work even if they begin with one or several space characters.
@@ -521,7 +544,7 @@ Changes in version 0.52
    "programname ?" now gives a more helpful output.
 
  - The functions remove(), rename() and system() has been moved to the oslib.
-   This change should not be noticable for the user.
+   This change should not be noticeable for the user.
 
  - Peter Karlsson has prepared man-pages for CrashMail and all related tools.
    Thanks, Peter! These are handy under Linux, but can also be used on other
