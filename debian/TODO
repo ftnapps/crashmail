@@ -1,0 +1,48 @@
+
+            - Debian TODO for Crashmail package.
+ 
+-------------------------------------------------------------------------------
+
+crashmail: some failures on 64 bit systems
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=742723
+https://sourceforge.net/p/ftnapps/crashmail/tickets/4/
+
+-------------------------------------------------------------------------------
+
+http://qa.debian.org/bls/packages/c/crashmail.html
+
+W dpkg-buildflags-missing CFLAGS 49 (of 49) missing (armel, armhf, hurd-i386,
+ i386, kfreebsd-i386, mips, mipsel, powerpc, s390x)
+
+-------------------------------------------------------------------------------
+
+-> Does the example.prefs file needs to be updated regarding filters?
+
+- Now that unar is recommended instead of the non-free lha, update the PACKER line
+changes in the Crashmail example.prefs file being done with the packaging. Also
+include the other archivers actually available in Debian.
+
+-------------------------------------------------------------------------------
+        - Lintian info and/or  pedantic results
+        
+I: crashmail source: testsuite-autopkgtest-missing
+https://lintian.debian.org/tags/testsuite-autopkgtest-missing.html
+ https://ci.debian.net/doc/.
+ 
+	- https://lintian.debian.org/tags/hardening-no-bindnow.html
+I: crashmail: hardening-no-bindnow usr/bin/crashexport
+I: crashmail: hardening-no-bindnow usr/bin/crashgetnode
+I: crashmail: hardening-no-bindnow usr/bin/crashlist
+I: crashmail: hardening-no-bindnow usr/bin/crashlistout
+I: crashmail: hardening-no-bindnow usr/bin/crashmail
+I: crashmail: hardening-no-bindnow usr/bin/crashmaint
+I: crashmail: hardening-no-bindnow usr/bin/crashstats
+I: crashmail: hardening-no-bindnow usr/bin/crashwrite
+
+ 
+-------------------------------------------------------------------------------
+
+- Add CMake to Build-Depends after updating the source to enable being able to
+  use CMake.
+
+-------------------------------------------------------------------------------
