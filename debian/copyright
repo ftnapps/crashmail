@@ -64,7 +64,7 @@ License: Expat
 
 Files: debian/*
 Comment: Copyright and License for the debian directory files.
-Copyright: 2009-2014, Robert James Clay <jame@rocasa.us>
+Copyright: 2009-2017, Robert James Clay <jame@rocasa.us>
  2000-2010, Peter Krefting <peterk@debian.org>
  1999, Per Lundberg <plundis@debian.org> 
 License: GPL-2+
