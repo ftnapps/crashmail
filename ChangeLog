@@ -1,3 +1,14 @@
+2014-05-01 03:34  Robert James Clay  <jame@rocasa.us>
+
+ - Release as version 1.6
+
+ - Add missing man page for the crashlistout binary.
+
+ - Add thanks to Lars Kellogg-Stedman to the README file.
+
+ - Remove duplicate entry from ChangeLog dated '2013-02-12 11:18'.
+
+
 2014-03-06 16:45  Robert James Clay  <jame@rocasa.us>
 
  - Release as version 1.5
@@ -84,16 +95,6 @@
  - src/tools/crashwrite.c: Fix integer-length issues in crashwrite. Crashwrite
    declares pktnum as type ulong when it should really be uint32_t. Using "%lx"
    instead of "%x" to display this was resulting in invalid packet filenames.
-
-
-2013-02-12 11:18  Robert James Clay  <jame@rocasa.us>
-
- - Release as version 1.1
-
- - src/tools/crashexport.c: crashexport has already had its version set as v1.1;
-   with the release of Crashmail with an overall version of v1.1, synchronize
-   its version with crashmail itself by setting it from src/crashmail/version.h
-   instead of setting it directly in its code.
 
 
 2013-02-12 11:18  Robert James Clay  <jame@rocasa.us>

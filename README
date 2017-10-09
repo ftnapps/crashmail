@@ -53,6 +53,9 @@ JAMLIB which CrashMail uses for handling JAM messagebases.
 
 Thanks for Peter Karlsson for porting CrashMail II to OS/2 and the man pages.
 
+Thanks to Lars Kellogg-Stedman for the testing scripts as well as the other
+improvements he has made.
+
 
 =============
 Documentation

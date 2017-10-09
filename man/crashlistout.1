@@ -1,0 +1,34 @@
+.TH CRASHLISTOUT 1 2014-03-27 "Johan Billing" "CrashMail"
+.SH NAME
+crashlistout \- List the mail files waiting to go out in the specified 
+directory.
+.SH SYNOPSIS
+.B crashlistout
+DIRECTORY [outbounddir] ZONE [zonenumber] PATTERN [string] [VERBOSE]
+.SH DESCRIPTION
+Checks the specified directory for outgoing mail files and prints the information
+that was found. If no outbound directory is specified, it uses the path specified
+in the environment variable CMOUTBOUND. If a zone is not specified, it uses that
+defined the environment variable CMOUTBOUNDZONE or defaults to 2.
+
+.SH OPTIONS
+.TP
+.I (DIRECTORY) <string>
+The directory being checked.
+.TP
+.I (ZONE) <string>
+Specify the primary zone. Defaults to 2.
+.TP
+.I (PATTERN) <string>
+The specific node pattern to listed.
+.TP
+.I VERBOSE
+If the listing should be verbose.
+.SH "SEE ALSO"
+.BR crashmail (1),
+.\".SH FILES
+.\".SH BUGS
+.SH AUTHOR
+CrashMail is written by Johan Billing <billing@df.lth.se>.
+.PP
+This manual page was written by Robert James Clay <jame@rocasa.us>.
