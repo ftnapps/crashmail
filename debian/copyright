@@ -21,7 +21,7 @@ License: permissive
  projects as long as the documentation mentions the original copyright
  holder.
 
-Files: jamlib/*
+Files: src/jamlib/*
 Copyright: 1999, Björn Stenberg
            1999-2004, Johan Billing <billing@df.lth.se>
 License: LGPL-2.1
