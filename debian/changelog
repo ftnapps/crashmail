@@ -1,8 +1,22 @@
-crashmail (1.6-0~1) UNRELEASED; urgency=medium
+crashmail (1.6-1) unstable; urgency=medium
 
   * New upstream release.
+  * Add a debian/TODO file.
+  * Add 'doc/AreafixHelp.txt' to debian/crashmail.docs.
+  * Update the debhelper compatibility level from '8' to '9'.
+  * Correct the file path in the 'jamlib' stanza in debian/copyright.
+  * Add 'doc/example.prefs' to debian/crashmail.docs. (Closes: #791488)
+  * Change 'dh_strip' option in debian/rules to generate a dbgsym package.
+  * Changes to debian/control:
+      Declare compliance with Debian Policy v4.1.1.
+      Remove the no longer needed 'crashmail-dbg' stanza.
+      Set the Vcs-Git URL to use 'https' instead of 'git'.
+      Set the Vcs-Browser URL to use 'https' instead of 'http'.
+      Update the debhelper Build-Depends version to '>= 9.20151219'.
+  * Replace 'debian/crashlistout.1' with the upstream version in the file
+    debian/crashmail.manpages.
 
- -- Robert James Clay <jame@rocasa.us>  Mon, 09 Oct 2017 00:25:16 +0000
+ -- Robert James Clay <jame@rocasa.us>  Mon, 09 Oct 2017 19:59:13 -0400
 
 crashmail (1.5-1) unstable; urgency=low
 
