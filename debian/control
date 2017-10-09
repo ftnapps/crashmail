@@ -5,7 +5,7 @@ Maintainer: Robert James Clay <jame@rocasa.us>
 Standards-Version: 4.1.1
 Build-Depends: debhelper (>= 9.20151219), dpkg-dev (>= 1.16.1~)
 Homepage: http://ftnapps.sourceforge.net/crashmail.html
-Vcs-Browser: http://sourceforge.net/p/ftnapps/crashmail/code/ci/debian/tree
+Vcs-Browser: https://sourceforge.net/p/ftnapps/crashmail/code/ci/debian/tree
 Vcs-Git: git://git.code.sf.net/p/ftnapps/crashmail/code -b debian
 
 Package: crashmail
