@@ -1,13 +1,38 @@
-2014-05-16 19:12  Robert James Clay  <jame@rocasa.us>
+2018-07-16 18:32  Robert James Clay  <jame@rocasa.us>
 
-  - Merge changes by Niklas Lindholm from the merge of them that
-    Lars Kellogg-Stedman did in his repository.
+ - Release as version 1.7
 
-  - Correct two instances of mis-spelling 'noticeable' as 'noticable' in the
-    ChangeLog file.
+ - Correct 'Skiping' to 'Skipping' on line 73 of src/crashmail/scan.c
 
-  - Correct an instance of mis-spelling 'messages' as 'messsages' in the
-    ChangeLog file.
+ - Correct 'specied' to 'specified' on line 47 of man/crashmail.1
+
+ - Correct 'maintanence' to 'maintenence' on line 3 of man/crashmaint.1
+
+ - Correct 'specied' to 'specified' on line 140 of doc/ReadMe.txt
+
+ - Correct 'occurences' to 'occurrences' on line 158 of doc/example.prefs
+
+ - Correct 'adressed' to 'addressed' on line 201 of doc/example.prefs
+
+ - Correct 'adresses' to 'addresses' on line 402 of doc/example.prefs
+
+
+2018-03-08 09:24  Robert James Clay  <jame@rocasa.us>
+
+ - Add OS/X build capability, resolving the "OS/X Build" ticket at SoureForge:
+   https://sourceforge.net/p/ftnapps/crashmail/tickets/6/
+
+
+2016-09-16 19:21  Robert James Clay  <jame@rocasa.us>
+
+ - Merge changes by Niklas Lindholm that were merged by Lars Kellogg-Stedman
+   into his repository.
+
+ - Correct two instances of mis-spelling 'noticeable' as 'noticable' in the
+   ChangeLog file.
+
+ - Correct an instance of mis-spelling 'messages' as 'messsages' in the ChangeLog
+   file.
 
 
 2016-09-02 01:34  Niklas Lindholm <niklas@nilin.se>
