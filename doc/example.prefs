@@ -198,7 +198,7 @@ CHECKSEENBY
 ; CHECKPKTDEST
 ;
 ; CrashMail should check the destination node of all incoming .pkt files and
-; only toss them if they are adressed to one of the local AKAs.
+; only toss them if they are addressed to one of the local AKAs.
 
 ;CHECKPKTDEST
 
