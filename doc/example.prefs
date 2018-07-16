@@ -155,7 +155,7 @@ STATSFILE "c:\\fido\\crashmail.stats"
 ;
 ; STRIPRE
 ;
-; CrashMail should strip all occurences of "Re:", "Re[x]:" and "Re^x:"
+; CrashMail should strip all occurrences of "Re:", "Re[x]:" and "Re^x:"
 ; in the subject of messages before they are imported.
 ;
 STRIPRE
