@@ -5,7 +5,7 @@
 Introduction
 ------------
 The message filter makes it possible filter out messages that match a set of
-critera and perform a number of commands on them. All messages that are handled
+criteria and perform a number of commands on them. All messages that are handled
 by CrashMail are checked against the filter statements in the configuration.
 
 Filter statements have this general syntax in the configuration:
