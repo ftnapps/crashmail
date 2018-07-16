@@ -399,7 +399,7 @@ PACKER "ZIP" "c:\\fido\\bin\\pkzip %a %f" "c:\\fido\\bin\\pkunzip %a" "PK"
 ; ADDNODE node1 node2 ...
 ; REMNODE nodepattern1 nodepattern2 ...
 ;
-; Here you configure the adresses of your node. ADDNODE is used to add nodes
+; Here you configure the addresses of your node. ADDNODE is used to add nodes
 ; the the SEEN-BY lines in areas with this AKA and REMNODE is used to remove
 ; nodes. Nodes for ADDNODE and REMNODE has to be 2D, that is only net/node
 ; should be specified. Patterns are allowed for REMNODE.
