@@ -137,7 +137,7 @@ RESCAN <string>
 RESCANNODE <string>
 RESCANMAX <string>
 
- Rescans the specied area for the specied node. If RESCANMAX is specified,
+ Rescans the specified area for the specified node. If RESCANMAX is specified,
  it sets the maximum number of messages to rescan.
 
 SETTINGS <string>
