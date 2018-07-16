@@ -70,7 +70,7 @@ bool Scan(void)
          LogWrite(5, DEBUG, "Skipping area, it has no exportfunc.");
        }
      } else {
-       LogWrite(5, DEBUG, "Skiping area because it has no messagebase or area type is not echomail or netmail..");
+       LogWrite(5, DEBUG, "Skipping area because it has no messagebase or area type is not echomail or netmail..");
      }
    }
 
