@@ -1,3 +1,10 @@
+crashmail (1.7-0~1) UNRELEASED; urgency=medium
+  TODO:
+    - Update packaging for new upstream.
+  * New upstream release.
+
+ -- Robert James Clay <jame@rocasa.us>  Mon, 16 Jul 2018 20:59:23 -0400
+
 crashmail (1.6-1) unstable; urgency=medium
 
   * New upstream release.
