@@ -1,9 +1,18 @@
-crashmail (1.7-0~1) UNRELEASED; urgency=medium
+crashmail (1.7-0~2) UNRELEASED; urgency=medium
   TODO:
     - Update packaging for new upstream.
   * New upstream release.
+  * Declare compliance with Debian Policy v4.1.5.
+  * Add an 'override_dh_auto_test' stanza in the debian/rules file in order to
+    run the upstream tests.
+  * Remove a trailing space on a line in the 0.71-5 entry of debian/changelog.
+  * Set the 'Priority' from 'extra' back to 'optional' in debian/control.
+  * Change DEB_BUILD_MAINT_OPTIONS in debian/rules from '-format' to '+all'.
+  * Changes to debian/copyright:
+    + Set the 'Format' URL to use the HTTPS protocol.
+    + Update copyright information for the new upstream.
 
- -- Robert James Clay <jame@rocasa.us>  Mon, 16 Jul 2018 20:59:23 -0400
+ -- Robert James Clay <jame@rocasa.us>  Tue, 17 Jul 2018 22:35:41 -0400
 
 crashmail (1.6-1) unstable; urgency=medium
 
@@ -59,7 +68,7 @@ crashmail (0.71-5) unstable; urgency=low
   * Add usage of the CPPFLAGS,CFLAGS,and LDFLAGS variables to necessary src/
     directory Makefile.linux files.
   * Changes to debian/control:
-    - Add 'dpkg-dev (>= 1.16.1~)' to Build-Depends. 
+    - Add 'dpkg-dev (>= 1.16.1~)' to Build-Depends.
     - Update Standards-Version to v3.9.4, no changes required.
     - Replace the Suggested non-free lha package with the unar package.
   * Changes to debian/rules:
