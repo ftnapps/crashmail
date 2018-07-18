@@ -1,4 +1,4 @@
-Description: Mitigate errorneous testing failure
+Description: Mitigate erroneous testing failure
  The 'it_finds_a_point' test in tests/01-nodelist-test.sh fails during a package
  build but not when manually compiling and testing. For now, comment it out.
 Author: Robert James Clay <jame@rocasa.us>
