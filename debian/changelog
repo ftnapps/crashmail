@@ -1,4 +1,4 @@
-crashmail (1.7-0~3) UNRELEASED; urgency=medium
+crashmail (1.7-0~4) UNRELEASED; urgency=medium
   TODO:
     - Update packaging for new upstream.
   * New upstream release.
@@ -12,7 +12,7 @@ crashmail (1.7-0~3) UNRELEASED; urgency=medium
     + Set the 'Format' URL to use the HTTPS protocol.
     + Update copyright information for the new upstream.
 
- -- Robert James Clay <jame@rocasa.us>  Wed, 18 Jul 2018 15:21:58 -0400
+ -- Robert James Clay <jame@rocasa.us>  Wed, 18 Jul 2018 17:01:21 -0400
 
 crashmail (1.6-1) unstable; urgency=medium
 
