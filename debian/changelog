@@ -1,18 +1,18 @@
-crashmail (1.7-0~2) UNRELEASED; urgency=medium
+crashmail (1.7-0~3) UNRELEASED; urgency=medium
   TODO:
     - Update packaging for new upstream.
   * New upstream release.
   * Declare compliance with Debian Policy v4.1.5.
+  * Add a debian/patches/03-MitigateErroneousFailure.patch file.
   * Add an 'override_dh_auto_test' stanza in the debian/rules file in order to
     run the upstream tests.
-  * Remove a trailing space on a line in the 0.71-5 entry of debian/changelog.
   * Set the 'Priority' from 'extra' back to 'optional' in debian/control.
   * Change DEB_BUILD_MAINT_OPTIONS in debian/rules from '-format' to '+all'.
   * Changes to debian/copyright:
     + Set the 'Format' URL to use the HTTPS protocol.
     + Update copyright information for the new upstream.
 
- -- Robert James Clay <jame@rocasa.us>  Tue, 17 Jul 2018 22:35:41 -0400
+ -- Robert James Clay <jame@rocasa.us>  Wed, 18 Jul 2018 15:21:58 -0400
 
 crashmail (1.6-1) unstable; urgency=medium
 
