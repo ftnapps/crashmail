@@ -17,9 +17,9 @@ override_dh_auto_build:
 	$(MAKE) -C src linux
 
 override_dh_auto_test:
-	ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-		$(MAKE) -C tests
-	endif
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	$(MAKE) -C tests
+endif
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/crashmail
